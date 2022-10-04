@@ -1,0 +1,13 @@
+.headerclass{
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mainclass{
+    
+}
+.section__form{
+    border: 1px solid black;
+
+}
