@@ -30,7 +30,7 @@
         </div>
     </header>
     <section class="banner">
-        <div class="banner__top">
+        <div class="banner__top contenedor-principal">
             <div class="banner__info">
                 <h2 class="banner__titulo">Gestiona tu <span class="banner__titulo--color-purple">inventario</span></h2>
                 <p class="banner__parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, recusandae laboriosam. Id, ad laborum. Nobis delectus reprehenderit voluptatibus labore eius, odio magni</p>
@@ -38,10 +38,37 @@
             </div>
             <img class="banner__img" src="public/imagenes/banner.jpg" alt="Gestion de inventario">
         </div>
-        <div style="height: 150px; overflow: hidden;" >
-            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-                <path d="M-14.39,-2.44 C256.49,118.92 238.42,-89.28 540.34,57.73 L512.69,160.38 L-41.48,174.19 Z" style="stroke: none; fill: #08f;"></path>
+        <div class="banner__bottom" style="overflow: hidden;" >
+            <svg class="banner__svg" viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+                <path class="banner__wave" d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none;"></path>
             </svg>
         </div>
+    </section>
+    <main class="main-contenido contenedor-principal">
+        <h2 class="main-contenido__titulo">TU INVENTARIO EN <span class="main-contenido__titulo--color-purple">LINEA</span></h2>
+        <p class="main-contenido__parrafo">Ventajas de controlar el inventario de tu negocio</p>
+        <div class="main-contenido__ventaja">
+            <div class="main-contenido__info">
+                <h3 class="main-contenido__nombre">Titulo</h3>
+                <p class="main-contenido__descripcion">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione at nobis sint commodi veniam, odit illo iusto? Perferendis, hic iste ipsam autem vero reiciendis at dolores dolore fugit, quasi exercitationem!</p>
+            </div>
+            <img class="main-contenido__img" src="public/imagenes/banner.jpg" alt="">
+        </div>
+        <div class="main-contenido__ventaja">
+            <div class="main-contenido__info main-contenido__info--invertir-orden">
+                <h3 class="main-contenido__nombre">Titulo</h3>
+                <p class="main-contenido__descripcion">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione at nobis sint commodi veniam, odit illo iusto? Perferendis, hic iste ipsam autem vero reiciendis at dolores dolore fugit, quasi exercitationem!</p>
+            </div>
+            <img class="main-contenido__img main-contenido__img--no-margin" src="public/imagenes/banner.jpg" alt="">
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer__contenedor contenedor-principal">
+            <a class="footer__logo" href="index.html">
+                <h1 class="footer__titulo">INVENTORY</h1>
+            </a>
+            <a class="footer__button" href="">Contactanos</a>
+        </div>
+    </footer>
 </body>
 </html>
