@@ -97,7 +97,7 @@
 /**ESTILO PARA LA SECCION MAIN DEL FORMULARIO*/
 .seccion__main{
     border-radius: 15px;
-    margin: 30px 203px 85px;
+    margin: 30px 203px 60px;
     padding: 7px 55px;
     box-shadow: 0px 0px 1px 1px  rgba(0, 0, 0, 0.25);
 }
@@ -121,7 +121,8 @@
 
 /*ESTILO PARA EL FORMULARIO*/
 .main__form{
-    padding: 20px 0px;
+    padding: 20px 0px 50px;
+
 }
 .form{
     display: grid;
