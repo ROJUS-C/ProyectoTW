@@ -165,10 +165,12 @@
     justify-content: center;
     margin-top: 5px;
     color:  #0096FF;
+    text-decoration: none;
 }
 .inicio_empleado {
     display: flex;
     justify-content: center;
     margin-top: 20px;
     color: #5800FF;
+    text-decoration: none;
 }
