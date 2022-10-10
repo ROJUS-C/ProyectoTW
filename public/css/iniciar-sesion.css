@@ -1,0 +1,174 @@
+/*ESTILO PARA EL HEADER*/
+.header{
+    height: 110px;
+    margin: 0px 40px;
+    box-shadow: 0px 0.4px 1px 0px rgb(0, 0, 0, .25);
+}
+
+.header__main{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.header__logo{
+    text-decoration: none;
+}
+
+.header__titulo{
+    font-size: 48px;
+    font-weight: bold;
+    color: #5800FF;
+}
+
+.header__opciones{
+    display: flex;
+    list-style: none;
+    gap: 24px;
+}
+
+.header__opcion{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 185px;
+    height: 50px;
+    border: 2px solid #5800FF;
+    border-radius: 15px;
+    box-shadow: 0px 3px 3px 0px rgb(0, 0, 0, .27);
+}
+
+.header__opcion--background-purple{
+    background-color: #5800FF;
+}
+
+.header__link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 20px;
+    color: #5800FF;
+    height: 100%;
+    width: 100%;
+}
+
+.header__link--color-white{
+    color: #ffffff;
+}
+
+/*ESTILO DEL FOTEER*/
+.footer{
+    height: 110px;
+    background-color: #5800FF;
+}
+
+.footer__contenedor{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin: 0px 40px;
+}
+
+.footer__logo{
+    text-decoration: none;
+}
+
+.footer__titulo{
+    font-size: 48px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.footer__button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width: 185px;
+    height: 50px;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 3px 3px 0px rgb(0, 0, 0, .27);
+}
+/**ESTILO PARA LA SECCION MAIN DEL FORMULARIO*/
+.seccion__main{
+    border-radius: 15px;
+    margin: 30px 500px 60px;
+    padding: 7px 55px;
+    box-shadow: 0px 0px 1px 1px  rgba(0, 0, 0, 0.25);
+}
+.form__title__img i {
+    padding: 20px;
+    border-radius: 100%;
+    font-size: 40px;
+    color: white;
+    background-color: #0096FF;
+}
+.form__title__h2 h2{
+    color: #0096FF;
+}
+.main__title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/*ESTILO PARA EL FORMULARIO*/
+.main__form{
+    padding: 20px 0px 50px;
+
+}
+.form{
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 30px;
+}
+.input__group label{
+    font-style: normal;
+    font-size: 18px;
+    color: #0096FF;
+}
+.input__group input{
+    border-radius: 20px;
+    padding: 5px;
+    height: 30px;
+    border: 2px solid #9D9D9D;
+    margin-top: 8px;
+    margin-bottom: 18px;
+    width: 100%;
+}
+.input__sub{
+    display: flex;
+    margin-top: 29px;
+}
+.input__sub button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border: none;
+    color: white;
+    font-size: 17px;
+    background-color: #5800FF;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+}
+.olvido {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    color:  #0096FF;
+}
+.inicio_empleado {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    color: #5800FF;
+}
