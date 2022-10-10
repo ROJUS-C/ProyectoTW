@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../public/css/general.css">
+    <link rel="stylesheet" href="../public/css/iniciar-sesion.css">
+</head>
+<body>
+    <!-- ENCABEZADO -->
+    <header class="header">
+        <div class="header__main contenedor-principal">
+            <a class="header__logo" href="../index.html">
+                <h1 class="header__titulo">INVENTORY</h1>
+            </a>
+            <nav class="header__menu">
+                <ul class="header__opciones">
+                    <li class="header__opcion header__opcion--background-purple">
+                        <a class="header__link header__link--color-white" href="">Registrarse</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- MAIN -->
+    <main class="main-contenido contenedor-principal">
+        <section class="seccion__main">
+            <div class="main__title">
+                <div class="form__title__img">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="form__title__h2">
+                    <h2>INICIAR SESION</h2>
+                </div>
+            </div>
+            <div class="main__form">
+                <form class="form" action="">
+                    <div class="form__seccion1">
+                        <div class="input__group">
+                            <label for="email">Correo</label>
+                            <input type="email" placeholder="Correo" name="email" id="email">
+                        </div>
+                        <div class="input__group">
+                            <label for="pass">Contraseña</label>
+                            <input type="password" placeholder="Confirmar contraseña" name="pass" id="pass">
+                        </div>
+                        <a class="olvido" href="">¿olvidaste tu contraseña?</a>
+                        <div class="input__sub">
+                            <button class="button">iniciar sesion</button>
+                        </div>
+                        <div class="input__sub">
+                            <button class="button">Registrarse</button>
+                        </div>
+                        <a class="inicio_empleado" href="">iniciar sesion como empleado</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <!-- PIE DE PAGINA -->
+    <footer class="footer">
+        <div class="footer__contenedor contenedor-principal">
+            <a class="footer__logo" href="../index.html">
+                <h1 class="footer__titulo">INVENTORY</h1>
+            </a>
+            <a class="footer__button" href="">Contactanos</a>
+        </div>
+    </footer>
+    
+</body>
+</html>
