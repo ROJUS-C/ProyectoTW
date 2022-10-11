@@ -61,7 +61,10 @@
 /*ESTILO DEL FOTEER*/
 .footer{
     height: 110px;
+    width: 100%;
     background-color: #5800FF;
+    position: absolute;
+    bottom: 0px;
 }
 
 .footer__contenedor{
@@ -83,7 +86,7 @@
 }
 
 .footer__button{
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     text-decoration: none;
