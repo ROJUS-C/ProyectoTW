@@ -160,6 +160,9 @@
     cursor: pointer;
     width: 100%;
 }
+.input__sub .button1{
+    background-color: #0096FF;
+}
 .olvido {
     display: flex;
     justify-content: center;
