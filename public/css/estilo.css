@@ -127,6 +127,7 @@
 
 .main-contenido{
     margin-top: 40px;
+    padding: 0px 80px;
 }
 
 .main-contenido__titulo{
@@ -150,7 +151,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     margin-bottom: 100px;
-    padding: 0px 80px;
 }
 
 .main-contenido__info{
@@ -172,8 +172,8 @@
 }
 
 .main-contenido__img{
-    width: 400px;
-    height: 270px;
+    width: 320px;
+    height: 320px;
     margin-left: auto;
 }
 
@@ -205,7 +205,7 @@
 }
 
 .footer__button{
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
@@ -215,4 +215,103 @@
     border: 2px solid #ffffff;
     border-radius: 15px;
     box-shadow: 0px 3px 3px 0px rgb(0, 0, 0, .27);
+}
+
+/* Tablet */
+
+@media (max-width: 878px){
+    .header{
+        height: auto;
+    }
+
+    .header__main{
+        flex-direction: column;
+        padding: 20px 0px;
+    }
+
+    .header__menu{
+        margin-top: 20px;
+    }
+
+    .banner{
+        height: auto;
+    }
+
+    .banner__top{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 0;
+    }
+
+    .banner__info{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        height: auto;
+        padding: 0px 80px;
+        margin-bottom: 20px;
+    }
+
+    .banner__img{
+        width: 100%;
+        height: 380px;
+        border-radius: 0px;
+        order: -1;
+    }
+
+    .main-contenido__ventaja{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 50px;
+        gap: 20px;
+    }
+
+    .main-contenido__nombre{
+        text-align: center;
+    }
+
+    .main-contenido__img{
+        margin-left: 0;
+        order: -1;
+    }
+
+    .footer{
+        height: auto;
+        margin-top: 100px;
+    }
+
+    .footer__contenedor{
+        flex-direction: column;
+        padding: 20px 0px;
+    }
+
+    .footer__button{
+        margin-top: 15px;
+    }
+}
+
+
+/* Movil */
+
+@media (max-width: 500px){
+    .header__opciones{
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .banner__info{
+        padding: 0px 30px;
+    }
+
+    .banner__bottom{
+        height: 180px;
+    }
+
+    .main-contenido{
+        padding: 0px 30px;
+    }
 }
