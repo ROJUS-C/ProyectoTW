@@ -1,7 +1,13 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 /*ESTILO PARA EL HEADER*/
 .header{
     height: 110px;
-    margin: 0px 40px;
+    padding: 0px 20px;
     box-shadow: 0px 0.4px 1px 0px rgb(0, 0, 0, .25);
 }
 
@@ -62,14 +68,15 @@
 .footer{
     height: 110px;
     background-color: #5800FF;
+    padding: 0px 20px;
+    margin-top: auto;
 }
 
 .footer__contenedor{
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     height: 100%;
-    margin: 0px 40px;
 }
 
 .footer__logo{
@@ -82,98 +89,143 @@
     color: #ffffff;
 }
 
-.footer__button{
-    display: none;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    width: 185px;
-    height: 50px;
-    color: #ffffff;
-    border: 2px solid #ffffff;
-    border-radius: 15px;
-    box-shadow: 0px 3px 3px 0px rgb(0, 0, 0, .27);
-}
+
 /**ESTILO PARA LA SECCION MAIN DEL FORMULARIO*/
-.seccion__main{
+
+.iniciar-sesion{
+    width: 600px;
+    height: 680px;
     border-radius: 15px;
-    margin: 30px 440px 60px;
-    padding: 7px 55px;
-    box-shadow: 0px 0px 1px 1px  rgba(0, 0, 0, 0.25);
+    margin: 30px auto 60px;
+    padding: 40px 90px;
+    box-shadow: 0px .2px 10px 0px  rgba(0, 0, 0, 0.25);
 }
-.form__title__img i {
-    padding: 20px;
-    border-radius: 100%;
-    font-size: 40px;
-    color: white;
-    background-color: #0096FF;
-}
-.form__title__h2 h2{
-    color: #0096FF;
-}
-.main__title{
+
+.iniciar-sesion__encabezado{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 15px;
+}
+
+.iniciar-sesion__icon{
+    padding: 30px;
+    border-radius: 100%;
+    font-size: 60px;
+    color: white;
+    background-color: #0096FF;
+}
+
+.iniciar-sesion__tittle{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 36px;
+    color: #0096FF;
 }
 
 /*ESTILO PARA EL FORMULARIO*/
-.main__form{
-    padding: 20px 0px 50px;
-
+.iniciar-sesion__main{
+    margin: 20px 0px 50px;
 }
-.form{
+
+.iniciar-sesion__form{
     display: grid;
     grid-template-columns: 1fr;
-    column-gap: 30px;
 }
-.input__group label{
-    font-style: normal;
+
+.iniciar-sesion__input-name{
     font-size: 18px;
-    color: #0096FF;
+    color: #0069B0;
 }
-.input__group input{
-    border-radius: 20px;
-    padding: 5px;
-    height: 30px;
+.iniciar-sesion__input{
+    width: 100%;
     border: 2px solid #9D9D9D;
+    border-radius: 20px;
+    padding: 0px 20px;
+    height: 40px;
     margin-top: 8px;
     margin-bottom: 18px;
-    width: 100%;
+    font-size: 16px;
 }
-.input__sub{
-    display: flex;
-    margin-top: 29px;
-}
-.input__sub button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
-    border: none;
-    color: white;
-    font-size: 17px;
-    background-color: #5800FF;
-    border-radius: 20px;
-    cursor: pointer;
-    width: 100%;
-}
-.input__sub .button1{
-    background-color: #0096FF;
-}
-.olvido {
-    display: flex;
-    justify-content: center;
-    margin-top: 5px;
+
+.iniciar-sesion__recuperar-contraseña{
+    text-align: center;
     color:  #0096FF;
     text-decoration: none;
 }
-.inicio_empleado {
+
+.iniciar-sesion__btns{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.iniciar-sesion__button{
+    width: 250px;
+    height: 40px;
+    margin-bottom: 30px;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #5800FF;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* modificador de button*/
+.iniciar-sesion__button--color-blue{
+    background-color: #0096FF;
+}
+
+.iniciar-sesion__empleado{
     display: flex;
     justify-content: center;
     margin-top: 20px;
     color: #5800FF;
     text-decoration: none;
+}
+
+/* Tablet */
+@media(max-width: 768px){
+    .footer__contenedor{
+        justify-content: center;
+    }
+}
+
+/* Movil 1 */
+
+@media(max-width: 640px){
+    .header{
+        height: auto;
+    }
+
+    .header__main{
+        flex-direction: column;
+        padding: 20px 0px;
+    }
+
+    .header__menu{
+        margin-top: 20px;
+    }
+
+    .iniciar-sesion{
+        width: 100%;
+        box-shadow: none;
+        padding: 40px 40px;
+    }
+}
+
+/* Movil 2 */
+
+@media(max-width: 320px){
+    .iniciar-sesion{
+        padding: 40px 25px;
+    }
+
+    .iniciar-sesion__button{
+        width: 100%;
+    }
 }
