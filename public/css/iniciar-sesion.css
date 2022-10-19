@@ -137,6 +137,7 @@ body{
     font-size: 18px;
     color: #0069B0;
 }
+
 .iniciar-sesion__input{
     width: 100%;
     border: 2px solid #9D9D9D;
@@ -223,9 +224,5 @@ body{
 @media(max-width: 320px){
     .iniciar-sesion{
         padding: 40px 25px;
-    }
-
-    .iniciar-sesion__button{
-        width: 100%;
     }
 }
