@@ -1,0 +1,16 @@
+{
+    "login":{
+        "type": "public"
+    },
+    "logout":{
+        "type": "public"
+    },
+    "admin": {
+        "type": "private",
+        "access": "admin"
+    },
+    "invetary":{
+        "type": "private",
+        "access": "admin"
+    }
+}
