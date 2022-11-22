@@ -1,3 +1,13 @@
+/* Colores */
+:root {
+    --color-main: #5800FF;
+    --color-blue: #0096FF;
+    --color-green: #AFBE01;
+    --color-red: #CA0114;
+    --color-yellow: #E1D100;
+}
+
+/* Tarjeta tienda de la vista inicio-admin */
 .tarjeta{
     margin: 15px;
     padding: 0;
@@ -5,7 +15,7 @@
     border-radius: 10px;
 }
 
-.tarjeta-container{
+.tarjeta__container{
     display: flex;
     align-items: center;
     width: 285px;
@@ -72,3 +82,17 @@
     color: #E1D100;
 }
 
+@media(max-width: 919px){
+    .tarjeta{
+        display: block;
+        width: 100%;
+    }
+
+    .tarjeta__container{
+        width: 100%;
+    }
+
+    .tarjeta__texto{
+        width: 100%;
+    }
+}

@@ -5,7 +5,7 @@
 
     /* Realizar consulta */
     $consulta = "
-    SELECT * FROM administrador
+    SELECT * FROM usuario
     WHERE
     correo = '".$_POST['correo']."'
     AND

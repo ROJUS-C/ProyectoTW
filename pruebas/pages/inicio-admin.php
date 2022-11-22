@@ -29,7 +29,7 @@
 
     <!-- Custom styles for this template-->
     <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../public/css/inicio-admin.css" rel="stylesheet">
+    <link href="../public/css/elementos.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -38,13 +38,13 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: var(--color-main);">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <!-- Logo -->
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-boxes"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Admin</div>
             </a>
@@ -59,7 +59,7 @@
                     <span>Inicio</span></a>
             </li>
 
-            <!-- Divisor -->
+            <!-- Linea Divisora -->
             <hr class="sidebar-divider my-0">
 
             <!-- Tienda -->
@@ -111,7 +111,7 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3" style="color: var(--color-main);">
                         <i class="fa fa-bars"></i>
                     </button>
 
@@ -156,11 +156,11 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card shadow h-100 py-2" style="border-left: 0.25rem solid var(--color-blue);">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: var(--color-blue);"> 
                                                 Tiendas </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
                                         </div>
@@ -174,11 +174,11 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card shadow h-100 py-2" style="border-left: 0.25rem solid var(--color-green);">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: var(--color-green);">
                                                 Empleados</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
                                         </div>
@@ -192,11 +192,11 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card shadow h-100 py-2" style="border-left: 0.25rem solid var(--color-red);">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: var(--color-red);">
                                                 Productos</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
                                         </div>
@@ -232,17 +232,17 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-12">
+                        <div class="col-xl-12">    
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tiendas</h6>
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: var(--color-main);">
+                                    <h6 class="m-0 font-weight-bold text-white">Tiendas</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body row">
-                                    <!-- Contenido  -->
+<!-- CONTENIDO PRINCIPAL -->
                                     <button class="tarjeta">
-                                        <div class="tarjeta-container">
+                                        <div class="tarjeta__container">
                                             <div class="tarjeta__icon">
                                                 <i class="fa-solid fa-store"></i>
                                             </div>
@@ -252,37 +252,7 @@
                                         </div>
                                     </button>
                                     <button class="tarjeta">
-                                        <div class="tarjeta-container">
-                                            <div class="tarjeta__icon">
-                                                <i class="fa-solid fa-store"></i>
-                                            </div>
-                                            <div class="tarjeta__texto">
-                                                <p class="tarjeta__nombre">Nombre de tienda</p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <button class="tarjeta">
-                                        <div class="tarjeta-container">
-                                            <div class="tarjeta__icon">
-                                                <i class="fa-solid fa-store"></i>
-                                            </div>
-                                            <div class="tarjeta__texto">
-                                                <p class="tarjeta__nombre">Nombre de tienda</p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <button class="tarjeta">
-                                        <div class="tarjeta-container">
-                                            <div class="tarjeta__icon">
-                                                <i class="fa-solid fa-store"></i>
-                                            </div>
-                                            <div class="tarjeta__texto">
-                                                <p class="tarjeta__nombre">Nombre de tienda</p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <button class="tarjeta">
-                                        <div class="tarjeta-container">
+                                        <div class="tarjeta__container">
                                             <div class="tarjeta__icon">
                                                 <i class="fa-solid fa-store"></i>
                                             </div>
