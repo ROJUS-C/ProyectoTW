@@ -1,0 +1,98 @@
+/* Colores */
+:root {
+    --color-main: #5800FF;
+    --color-blue: #0096FF;
+    --color-green: #AFBE01;
+    --color-red: #CA0114;
+    --color-yellow: #E1D100;
+}
+
+/* Tarjeta tienda de la vista inicio-admin */
+.tarjeta{
+    margin: 15px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+}
+
+.tarjeta__container{
+    display: flex;
+    align-items: center;
+    width: 285px;
+    height: 120px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0px .2px 10px 0px  rgba(0, 0, 0, 0.25);
+}
+
+.tarjeta__icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85px;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #0096FF;
+}
+
+.tarjeta__icon--green{
+    background-color: #AFBE01;
+}
+
+.tarjeta__icon--red{
+    background-color: #CA0114;
+}
+
+.tarjeta__icon--yellow{
+    background-color: #E1D100;
+}
+
+.tarjeta__icon i{
+    font-size: 40px;
+    color: #FFFFFF;
+}
+
+.tarjeta__texto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 100%;
+}
+
+.tarjeta__nombre{
+    font-size: 20px;
+    font-weight: bold;
+    color: #888888;
+    margin: 0px 8px;
+    text-align: center;
+}
+
+.tarjeta__titulo--green{
+    color: #AFBE01;
+}
+
+.tarjeta__titulo--red{
+    color: #CA0114;
+}
+
+.tarjeta__titulo--yellow{
+    color: #E1D100;
+}
+
+@media(max-width: 919px){
+    .tarjeta{
+        display: block;
+        width: 100%;
+    }
+
+    .tarjeta__container{
+        width: 100%;
+    }
+
+    .tarjeta__texto{
+        width: 100%;
+    }
+}
