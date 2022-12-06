@@ -1,7 +1,7 @@
 <?php
 
     /* Iniciar conexion con la base de datos */
-    require "../modelo/conexion.php";
+    require "conexion.php";
 
     /* Insertar */
     $resultado = mysqli_query($conexion, "

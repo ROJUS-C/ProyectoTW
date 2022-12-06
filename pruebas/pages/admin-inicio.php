@@ -5,7 +5,9 @@
         die("Te has intentado colar en la aplicacion principal");
     }
 
+    include "../PHP/administrador.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -53,6 +55,12 @@
                     <!-- Contenedor Top de Tarjetas -->
                     <div class="row">
 
+                        <?php 
+                                
+                            $datos = mostrarDatosGenerales($_SESSION['usuario_id']);
+                            foreach($datos as $dato){
+                        ?>
+
                         <!-- Tarjeta: Tiendas -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card shadow h-100 py-2" style="border-left: 0.25rem solid var(--color-blue);">
@@ -61,7 +69,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: var(--color-blue);"> 
                                                 Tiendas </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $dato['num_tiendas']; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-store fa-2x text-gray-300"></i>
@@ -79,7 +87,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: var(--color-green);">
                                                 Empleados</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $dato['num_empleados']; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-user-friends fa-2x text-gray-300"></i>
@@ -97,7 +105,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: var(--color-red);">
                                                 Productos</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $dato['cantidad_productos']; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-box-open fa-2x text-gray-300"></i>
@@ -115,7 +123,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Ganancias</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$100.000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$0</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -125,6 +133,12 @@
                             </div>
                         </div>
                     </div>
+
+                    <?php 
+                                
+                    }
+                            
+                    ?>
 
 
                     <!-- Contenedor de Tiendas -->
@@ -138,26 +152,31 @@
                                 </div>
                                 <!-- Cuerpo -->
                                 <div class="card-body row">
+
+                                <?php 
+                                
+                                $tiendas = mostrarTiendas($_SESSION['usuario_id']);
+                                foreach($tiendas as $tienda){
+
+                                ?>
+
                                     <button class="tarjeta">
                                         <div class="tarjeta__container">
                                             <div class="tarjeta__icon">
                                                 <i class="fas fa-2x bi-shop"></i>
                                             </div>
                                             <div class="tarjeta__texto">
-                                                <p class="tarjeta__nombre">Nombre de tienda</p>
+                                                <p class="tarjeta__nombre"><?php echo $tienda['nombre']; ?></p>
                                             </div>
                                         </div>
                                     </button>
-                                    <button class="tarjeta">
-                                        <div class="tarjeta__container">
-                                            <div class="tarjeta__icon">
-                                                <i class="fas fa-2x bi-shop"></i>
-                                            </div>
-                                            <div class="tarjeta__texto">
-                                                <p class="tarjeta__nombre">Nombre de tienda</p>
-                                            </div>
-                                        </div>
-                                    </button>
+
+                                <?php 
+                                
+                                }
+                                
+                                ?>
+                                
                                 </div>
                             </div>
                         </div>

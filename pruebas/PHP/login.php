@@ -1,11 +1,11 @@
 <?php
     session_start();
     /* Iniciar conexion con la base de datos */
-    require "../modelo/conexion.php";
+    require "conexion.php";
 
     /* Realizar consulta */
     $consulta = "
-    SELECT * FROM usuario
+    SELECT * FROM administrador
     WHERE
     correo = '".$_POST['correo']."'
     AND

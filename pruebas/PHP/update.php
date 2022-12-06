@@ -2,7 +2,7 @@
 
     session_start();
     /* Iniciar conexion con la base de datos */
-    require "../modelo/conexion.php";
+    require "conexion.php";
 
     $consulta = "
     UPDATE administrador
