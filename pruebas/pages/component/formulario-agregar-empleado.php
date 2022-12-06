@@ -1,11 +1,11 @@
 <form class="row g-3 my-3">
     <div class="col-md-4">
         <label for="validationDefault01" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="validationDefault01" value="Nombre de la tienda" required>
+        <input type="text" class="form-control" id="validationDefault01" placeholder="Ingrese el nombre" required>
     </div>
     <div class="col-md-4">
         <label for="validationDefault02" class="form-label">Ubicacion</label>
-        <input type="text" class="form-control" id="validationDefault02" value="Ubicacion" required>
+        <input type="text" class="form-control" id="validationDefault02" placeholder="Ubicacion" required>
     </div>
     <div class="col-md-4">
         <label for="validationDefaultUsername" class="form-label">Correo</label>
