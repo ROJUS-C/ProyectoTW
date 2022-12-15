@@ -5,12 +5,13 @@
 
     /* Insertar */
     $resultado = mysqli_query($conexion, "
-    INSERT INTO administrador VALUES(
+    INSERT INTO usuarios VALUES(
         NULL,
         '".$_POST['nombre']."',
         '".$_POST['apellido']."',
         '".$_POST['correo']."',
-        '".$_POST['password']."'
+        '".$_POST['password']."',
+        'Administrador'
     )
     ");
 

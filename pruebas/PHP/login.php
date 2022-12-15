@@ -5,7 +5,7 @@
 
     /* Realizar consulta */
     $consulta = "
-    SELECT * FROM administrador
+    SELECT * FROM usuarios
     WHERE
     correo = '".$_POST['correo']."'
     AND
@@ -20,8 +20,9 @@
         $_SESSION['usuario_id'] = $fila['usuario_id'];
         $_SESSION['nombre'] = $fila['nombre'];
         $_SESSION['apellido'] = $fila['apellido'];
+        $_SESSION['tipo'] = $fila['tipo'];
 
-        header("Location: ../pages/inicio-admin.php");
+        header("Location: ../pages/admin-inicio.php");
     }
     else{
         echo "Datos de usuario incorrecto";

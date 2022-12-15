@@ -1,5 +1,5 @@
 <?php
 
-    $conexion = new mysqli("localhost", "root", "", "proyectoweb");
+    $conexion = new mysqli("localhost", "root", "", "proyectotw");
 
 ?>

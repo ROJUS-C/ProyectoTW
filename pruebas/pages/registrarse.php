@@ -34,7 +34,7 @@
                 <h2 class="registro__tittle">REGISTRATE</h2>
             </div>
             <div class="registro__main">
-                <form class="registro__form" action="../controlador/register.php" method="POST">
+                <form class="registro__form" action="../php/register.php" method="POST">
                     <div class="registro__input-group">
                         <label class="registro__input-name" for="name">Nombre</label>
                         <input class="registro__input" type="text" placeholder="Nombre" name="nombre" id="nombre">

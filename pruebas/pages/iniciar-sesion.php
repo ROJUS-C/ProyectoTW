@@ -36,7 +36,7 @@
                 <h2 class="iniciar-sesion__tittle">INICIAR SESION</h2>
             </div>
             <div class="iniciar-sesion__main">
-                <form class="iniciar-sesion__form" action="../controlador/login.php" method="POST">
+                <form class="iniciar-sesion__form" action="../php/login.php" method="POST">
                     <div class="iniciar-sesion__input-group">
                         <label class="iniciar-sesion__input-name" for="email">Correo electronico</label>
                         <input class="iniciar-sesion__input" name="correo" type="email" placeholder="Correo electronico" name="email" id="email">

@@ -1,9 +1,9 @@
 <?php
 
-    session_start();
-    if(!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false){
-        die("Te has intentado colar en la aplicacion principal");
-    }
+session_start();
+if (!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false) {
+    die("Te has intentado colar en la aplicacion principal");
+}
 
 ?>
 
@@ -31,43 +31,69 @@
 
     <div id="wrapper">
 
-    <!-- Side Bar -->
-    <?php 
+        <!-- Side Bar -->
+        <?php
 
-    include "componentes/sideBar.php";
-    
-    ?>
+        include "componentes/sideBar.php";
+
+        ?>
         <!-- Contenedor Principal -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <div id="content">
-
                 <!-- Encabezado -->
-                <?php 
-                
+                <?php
                 include "componentes/encabezado.php";
-
                 ?>
-            </div>    
+
+                <!-- Content Row -->
+                <div class="row px-5">
+                    <?php require './component/formulario-agregar-empleado.php' ?>
+                </div>
+
+                <!-- contenedor para mostrar las tiendas -->
+
+                <div class="row px-3">
+                    <!-- Area Chart -->
+                    <div class="col">
+                        <div class="card shadow ">
+                            <div class="card-header py-3 d-flex  align-items-center">
+                                <h6 class="m-0 font-weight-bold text-primary">Tiendas</h6>
+                            </div>
+                            <!-- Tiendas -->
+                            <div class="container text-center ">
+                                <div class="row d-flex justify-content-center">
+                                    <?php include './component/tienda.php'; ?>
+
+                                    <?php include './component/tienda.php'; ?>
+                                    <?php include './component/tienda.php'; ?>
+                                    <?php include './component/tienda.php'; ?>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-    </div>
+        <!-- Acciones de opciones del menu del perfil y button para trasladarse a la parte superior de la pagina-->
+        <?php
 
-    <!-- Acciones de opciones del menu del perfil y button para trasladarse a la parte superior de la pagina-->
-    <?php 
-    
-    include "componentes/menuPerfil.php";
-    
-    ?>
+        include "componentes/menuPerfil.php";
 
-    <!-- Bootstrap: JavaScript-->
-    <script src="../public/vendor/jquery/jquery.min.js"></script>
-    <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../public/vendor/chart.js/Chart.min.js"></script>
-    <script src="../public/js/sb-admin/demo/chart-area-demo.js"></script>
-    <script src="../public/js/sb-admin/demo/chart-pie-demo.js"></script>
-    <script src="../public/js/sb-admin/sb-admin-2.min.js"></script>
+        ?>
+
+        <!-- Bootstrap: JavaScript-->
+        <script src="../public/vendor/jquery/jquery.min.js"></script>
+        <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="../public/vendor/chart.js/Chart.min.js"></script>
+        <script src="../public/js/sb-admin/demo/chart-area-demo.js"></script>
+        <script src="../public/js/sb-admin/demo/chart-pie-demo.js"></script>
+        <script src="../public/js/sb-admin/sb-admin-2.min.js"></script>
 
 </body>
+
 </html>
