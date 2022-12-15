@@ -11,6 +11,7 @@
         ";
 
         $resultado = mysqli_query($conexion, $consulta);
+        $filas = mysqli_fetch_assoc($resultado);
         return $resultado;
     };
 
@@ -38,6 +39,20 @@
 
         $resultado = mysqli_query($conexion, $consulta);
         return $resultado;
+    }
+
+    function mostrarProductos($tienda_id){
+        include "conexion.php";
+
+        $consulta = "
+        SELECT p.*, tp.cantidad_en_tienda from producto p
+        JOIN tienda_producto tp ON p.codigo_producto = tp.codigo_producto
+        WHERE tp.tienda_id = '".$tienda_id."'
+        ";
+
+        $resultado = mysqli_query($conexion, $consulta);
+        return $resultado;
+
     }
 
 ?>

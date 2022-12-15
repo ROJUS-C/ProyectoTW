@@ -21,7 +21,7 @@
         $_SESSION['nombre'] = $fila['nombre'];
         $_SESSION['apellido'] = $fila['apellido'];
 
-        header("Location: ../pages/inicio-admin.php");
+        header("Location: ../pages/admin-inicio.php");
     }
     else{
         echo "Datos de usuario incorrecto";
