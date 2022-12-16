@@ -3,7 +3,7 @@
     /* Iniciar conexion con la base de datos */
     require "conexion.php";
 
-    /* Realizar consulta */
+    /* */
     $consulta = "
     SELECT * FROM usuarios
     WHERE
@@ -21,8 +21,10 @@
         $_SESSION['nombre'] = $fila['nombre'];
         $_SESSION['apellido'] = $fila['apellido'];
         $_SESSION['tipo'] = $fila['tipo'];
-
+        if( $fila['tipo'] == 'Administrador'){
         header("Location: ../pages/admin-inicio.php");
+        }
+    header("Location: http://localhost/proyectTW/pruebas/pages/empleado/empleado-inicio.php");
     }
     else{
         echo "Datos de usuario incorrecto";
