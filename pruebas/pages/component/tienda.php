@@ -25,13 +25,48 @@ function tiendas($id = '', $nombre = 'Nombre',  $descripcion = 'Descripcion', $f
 function verTienda($tienda_id, $nombre = 'Nombre', $encargado = 'Encargado', $descripcion = 'Descripcion', $fecha = 'Fecha')
 {
 ?>
-    <div class="card text-center col-5 m-2">
+    <div class="card text-center col-12 m-2">
         <div class="card-header" style="background-color: #5800FF; color: white;">
             <?php echo $nombre ?>
         </div>
         <div class="card-body">
-            <h5 class="card-title"><span style="color:black">Empledo:</span> <?php echo $encargado ?></h5>
-            <p class="card-text"><span style="color:black">Descripcion:</span> <?php echo $descripcion ?></p>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Encargado</th>
+                            <th>Correo</th>
+                            <th>Descripcion</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $encargado ?></td>
+                            <td>Vacio</td>
+                            <td><?php echo $descripcion ?></td>
+                            <td>
+                                <button type="button" class="btn" style="background-color: var(--color-blue); color: white;">Editar</button>
+                                <button type="button" class="btn" style="background-color: var(--color-main); color: white;">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th>Ventas</th>
+                            <th>Producto mas vendido</th>
+                            <th>Producto menos vendido</th>
+                            <th>Total cantidad</th>
+                        </tr>
+                        <tr>
+                            <td>Vacio</td>
+                            <td>Vacio</td>
+                            <td>Vacio</td>
+                            <td>Vacio</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
             <div class="d-flex justify-content-center">
                 <a href="http://localhost/proyectTW/pruebas/pages/admin-tiendas.php" class="btn btn-primary mx-1">Volver</a>
                 <?php if ($encargado == 'Vacio') { ?>
@@ -48,7 +83,7 @@ function verTienda($tienda_id, $nombre = 'Nombre', $encargado = 'Encargado', $de
 function modificar($id = '', $nombre = '', $descripcion = ' ')
 {
 ?>
-    
+
     <form action="../../pruebas/modelo/modificarTienda.php?tienda_id=<?php echo $id ?>" method="POST" class="row g-3 my-3">
         <div class="col-12 d-flex justify-content-center">
             <div class="col-md-4">
