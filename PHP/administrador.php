@@ -45,10 +45,9 @@
         include "conexion.php";
 
         $consulta = "
-        SELECT p.*, pt.cantidad, t.nombre from tiendas t
-        JOIN productos_tienda pt ON t.tienda_id = pt.tienda_id
-        JOIN productos p ON pt.producto_id = p.producto_id
-        WHERE t.tienda_id = '".$tienda_id."'
+        SELECT p.*, tp.cantidad from productos p
+        JOIN productos_tienda tp ON p.producto_id = tp.producto_id
+        WHERE tp.tienda_id = '".$tienda_id."'
         ";
 
         $resultado = mysqli_query($conexion, $consulta);

@@ -16,6 +16,7 @@
     else{
         foreach($tiendas as $tienda){
             $productoTienda = $tienda['tienda_id'];
+            $_POST['productoTienda'] = $productoTienda;
             break;
         }
         $productos = mostrarProductos($productoTienda);
@@ -96,7 +97,9 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex align-items-center justify-content-between" style="background-color: var(--color-main);">
                             <h6 class="m-0 font-weight-bold text-white d-inline">Productos de: <?php echo $nombreTienda?></h6>
-                            <button class="btn text-white" style="border: 2px solid white; background-color: var(--color-main);">Agregar</button>
+                            <a href="#" data-toggle="modal" data-target="#agregarProducto">
+                                <button class="btn text-white" style="border: 2px solid white; background-color: var(--color-main);">Agregar</button>
+                            </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -146,14 +149,50 @@
     
     ?>
 
+    <!-- Form de agregar producto -->
+    <div class="modal fade" id="agregarProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form class="modal-content" action="../PHP/agregarProducto.php" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Producto <?php echo $_POST['productoTienda'] ?></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                        <input type="text" name="nombreProducto" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Precio</label>
+                        <input type="text" name="precioProducto" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Cantidad</label>
+                        <input type="text" name="cantidadProducto" class="form-control">
+                    </div>
+                    <input class="d-none" type="text" name="tiendaProducto" value=<?php echo $_POST['productoTienda']?>>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" type="submit">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+
     <!-- Bootstrap: JavaScript-->
-    <script src="../public/vendor/jquery/jquery.min.js"></script>
-    <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../public/vendor/chart.js/Chart.min.js"></script>
-    <script src="../public/js/sb-admin/demo/chart-area-demo.js"></script>
-    <script src="../public/js/sb-admin/demo/chart-pie-demo.js"></script>
-    <script src="../public/js/sb-admin/sb-admin-2.min.js"></script>
+    <script src="../public/sb-admin/vendor/jquery/jquery.min.js"></script>
+    <script src="../public/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../public/sb-admin/js/sb-admin-2.min.js"></script>
+    <script src="../public/sb-admin/vendor/chart.js/Chart.min.js"></script>
+    <script src="../public/sb-admin/js/demo/chart-area-demo.js"></script>
+    <script src="../public/sb-admin/js/demo/chart-pie-demo.js"></script>
+    
 
 </body>
 </html>
