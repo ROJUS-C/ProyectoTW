@@ -1,9 +1,36 @@
 <?php
 
+include_once '../modelo/conexion.php';
 session_start();
 if (!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false) {
     die("Te has intentado colar en la aplicacion principal");
 }
+
+$id = $_SESSION['usuario_id'];
+$sql = "select * from tiendas where administrador = '" . $id . "'";
+
+$resultado = mysqli_query($conexion, $sql);
+
+function ver($id)
+{
+    require '../modelo/conexion.php';
+    $sql = "
+    select * from tiendas where tienda_id = '" . $id . "'
+    ";
+    $res = mysqli_query($conexion, $sql);
+    return $res;
+}
+
+function get_empleado($id)
+{
+    require '../modelo/conexion.php';
+    $sql = "
+    select * from usuarios where tienda = '" . $id . "'
+    ";
+    $res = mysqli_query($conexion, $sql);
+    return $res;
+}
+
 
 ?>
 
@@ -45,35 +72,102 @@ if (!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false) {
                 <?php
                 include "componentes/encabezado.php";
                 ?>
-
                 <!-- Content Row -->
-                <div class="row px-5">
-                    <?php require './component/formulario-agregar-empleado.php' ?>
-                </div>
-
-                <!-- contenedor para mostrar las tiendas -->
-
-                <div class="row px-3">
-                    <!-- Area Chart -->
+                <?php if (isset($_GET['ver'])) { ?>
                     <div class="col">
                         <div class="card shadow ">
                             <div class="card-header py-3 d-flex  align-items-center">
-                                <h6 class="m-0 font-weight-bold text-primary">Tiendas</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Tienda</h6>
                             </div>
                             <!-- Tiendas -->
                             <div class="container text-center ">
                                 <div class="row d-flex justify-content-center">
-                                    <?php include './component/tienda.php'; ?>
-
-                                    <?php include './component/tienda.php'; ?>
-                                    <?php include './component/tienda.php'; ?>
-                                    <?php include './component/tienda.php'; ?>
-
+                                    <?php include './component/tienda.php';
+                                    $id = $_GET['ver'];
+                                    $array =  ver($id);
+                                    $empledo = get_empleado($id);
+                                    if ($empledo->num_rows == 0) {
+                                        $emps = 'Vacio';
+                                    } else {
+                                        foreach ($empledo as $key => $value) {
+                                            $emps = $value['nombre'] . ' ' . $value['apellido'];
+                                        }
+                                    }
+                                    foreach ($array as $key => $value) {
+                                        verTienda($value['tienda_id'], $value['nombre'], $emps, $value['descripcion'], $value['fecha']);
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } else if (isset($_GET['modificar'])) { ?>
+                    <div class="col">
+                        <div class="card shadow ">
+                            <div class="card-header py-3 d-flex  align-items-center " style="background-color: #5800FF;">
+                                <h6 class=" m-0 font-weight-bold " style="color: white;">Modificar</h6>
+                            </div>
+                            <!-- Modificar -->
+                            <div class="container text-center ">
+                                <div class="row d-flex justify-content-center">
+                                    <?php
+                                    $id = $_GET['modificar'];
+                                    require './component/tienda.php';
+                                    $res = ver($id);
+                                    foreach ($res as $key => $value) {
+                                        modificar($value['tienda_id'], $value['nombre'], $value['descripcion']);
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } else if (isset($_GET['agregarE'])) { ?>
+                    <div class="col">
+                        <div class="card shadow ">
+                            <div class="card-header py-3 d-flex  align-items-center" style="background-color: #5800FF;">
+                                <h6 class=" m-0 font-weight-bold " style="color: white;">Agregar empleado</h6>
+                            </div>
+                            <!-- Tiendas -->
+                            <div class="container px-5">
+                                <?php
+                                $tienda_id = $_GET['agregarE'];
+                                include './component/agregarEmpleado.php';
+                                agregarEmpleado($tienda_id);
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php } else { ?>
+                    <div class="row px-5">
+                        <?php require './component/formulario-agregar-tienda.php' ?>
+                    </div>
+                    <!-- contenedor para mostrar las tiendas -->
+                    <div class="row px-3">
+                        <!-- Area Chart -->
+                        <div class="col">
+                            <div class="card shadow ">
+                                <div class="card-header py-3 d-flex  align-items-center">
+                                    <h6 class=" m-0 font-weight-bold text-primary ">Tiendas</h6>
+                                </div>
+                                <!-- Tiendas -->
+                                <div class="container text-center ">
+                                    <div class="row d-flex justify-content-center">
+                                        <?php include './component/tienda.php';
+                                        if ($resultado->num_rows == 0) {
+                                            tiendas();
+                                        } else {
+                                            foreach ($resultado as $key => $value) {
+                                                tiendas($value['tienda_id'], $value['nombre'], $value['descripcion'], $value['fecha']);
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
 
         </div>
@@ -93,6 +187,7 @@ if (!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false) {
         <script src="../public/js/sb-admin/demo/chart-area-demo.js"></script>
         <script src="../public/js/sb-admin/demo/chart-pie-demo.js"></script>
         <script src="../public/js/sb-admin/sb-admin-2.min.js"></script>
+        <script src="../public/js/index.js"></script>
 
 </body>
 

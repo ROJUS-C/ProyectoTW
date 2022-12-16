@@ -1,9 +1,30 @@
 <?php
 
-    session_start();
-    if(!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false){
-        die("Te has intentado colar en la aplicacion principal");
-    }
+include_once '../modelo/conexion.php';
+session_start();
+if (!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false) {
+    die("Te has intentado colar en la aplicacion principal");
+}
+
+$id = $_SESSION['usuario_id'];
+
+$sql = "
+select u.nombre nombre,u.apellido apellido, u.correo correo, t1.nombre tienda  
+from usuarios u1 join tiendas t1 on(u1.usuario_id = t1.administrador and u1.usuario_id = ".$id.") 
+join usuarios u on(t1.tienda_id = u.tienda ); 
+";
+
+$sql2 = "
+select * from usuarios where usuario_id = ".$id." 
+";
+$res_2 = mysqli_query($conexion,$sql2);
+$nombre = '';
+foreach ($res_2 as $key => $value) {
+    $nombre =  $value['nombre'].' '.$value['apellido'];
+}
+
+$res = mysqli_query($conexion, $sql);
+
 
 ?>
 
@@ -31,33 +52,49 @@
 
     <div id="wrapper">
 
-    <!-- Side Bar -->
-    <?php 
+        <!-- Side Bar -->
+        <?php
 
-    include "componentes/sideBar.php";
-    
-    ?>
+        include "componentes/sideBar.php";
+
+        ?>
         <!-- Contenedor Principal -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <div id="content">
 
-                <!-- Encabezado -->
-                <?php 
-                
+                <!--Encabezado-->
+                <?php
                 include "componentes/encabezado.php";
-
                 ?>
-            </div>    
+                <div class="col">
+                    <div class="card shadow ">
+                        <div class="card-header py-3 d-flex  align-items-center " style="background-color: #5800FF;">
+                            <h6 class=" m-0 font-weight-bold " style="color: white;">EMPLEADOS</h6>
+                        </div>
+                        <div class="container text-center ">
+                            <div class="row d-flex justify-content-center my-5">
+                                <?php
+                                require 'component/empleados.php';
+                                if($res->num_rows == 0){
+                                    $res = [];
+                                }
+                                empleados($nombre, $res);
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 
     <!-- Acciones de opciones del menu del perfil y button para trasladarse a la parte superior de la pagina-->
-    <?php 
-    
+    <?php
+
     include "componentes/menuPerfil.php";
-    
+
     ?>
 
     <!-- Bootstrap: JavaScript-->
@@ -70,4 +107,5 @@
     <script src="../public/js/sb-admin/sb-admin-2.min.js"></script>
 
 </body>
+
 </html>
