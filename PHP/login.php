@@ -5,11 +5,13 @@
 
     /* Realizar consulta */
     $consulta = "
-    SELECT * FROM administrador
+    SELECT * FROM usuarios
     WHERE
     correo = '".$_POST['correo']."'
     AND
     password = '".$_POST['password']."'
+    AND
+    tipo = 'Administrador'
     ";
     $resultado = mysqli_query($conexion, $consulta);
     

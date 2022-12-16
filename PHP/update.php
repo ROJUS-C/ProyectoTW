@@ -5,7 +5,7 @@
     require "conexion.php";
 
     $consulta = "
-    UPDATE administrador
+    UPDATE usuarios
     SET
     nombre = '".$_POST['nombre']."',
     apellido = '".$_POST['apellido']."',

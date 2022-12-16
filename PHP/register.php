@@ -10,7 +10,8 @@
         '".$_POST['nombre']."',
         '".$_POST['apellido']."',
         '".$_POST['correo']."',
-        '".$_POST['password']."'
+        '".$_POST['password']."',
+        'Administrador'
     )
     ");
 

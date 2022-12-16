@@ -190,6 +190,7 @@
     include "componentes/menuPerfil.php";
     
     ?>
+    
 
     <!-- Bootstrap: JavaScript-->
     <script src="../public/vendor/jquery/jquery.min.js"></script>

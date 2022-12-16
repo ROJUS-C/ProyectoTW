@@ -5,9 +5,9 @@
         include "conexion.php";
 
         $consulta = "
-        SELECT * FROM tienda
+        SELECT * FROM tiendas
         WHERE
-        jefe = '".$id_administrador."'
+        administrador = '".$id_administrador."'
         ";
 
         $resultado = mysqli_query($conexion, $consulta);
@@ -21,19 +21,19 @@
 
         $consulta = "
         SELECT
-	        (select count(*) from tienda
-             where jefe = '".$id_administrador."'
+	        (select count(*) from tiendas t
+             where t.administrador = '".$id_administrador."'
 	        ) num_tiendas,
 
-            (select count(*) from administrador a
-             join tienda t on a.usuario_id = t.jefe
-             join empleado e on t.tienda_id = e.tienda_id
-             where a.usuario_id = '".$id_administrador."'
+            (select count(*) from usuarios u1
+             join tiendas t on t.administrador = '".$id_administrador."'
+             join usuarios u2 on t.tienda_id = u2.tienda AND u2.tipo = 'Empleado'
             ) num_empleados,
-            (select sum(td.cantidad_en_tienda) FROM tienda t
-             join tienda_producto td on t.tienda_id = td.tienda_id
-             join producto p on td.codigo_producto = p.codigo_producto
-             where t.jefe = '".$id_administrador."'
+
+            (select sum(td.cantidad) FROM tiendas t
+             join productos_tienda td on t.tienda_id = td.tienda_id
+             join productos p on td.producto_id = p.producto_id
+             where t.administrador = '".$id_administrador."'
             ) cantidad_productos
         ";
 
@@ -45,9 +45,10 @@
         include "conexion.php";
 
         $consulta = "
-        SELECT p.*, tp.cantidad_en_tienda from producto p
-        JOIN tienda_producto tp ON p.codigo_producto = tp.codigo_producto
-        WHERE tp.tienda_id = '".$tienda_id."'
+        SELECT p.*, pt.cantidad, t.nombre from tiendas t
+        JOIN productos_tienda pt ON t.tienda_id = pt.tienda_id
+        JOIN productos p ON pt.producto_id = p.producto_id
+        WHERE t.tienda_id = '".$tienda_id."'
         ";
 
         $resultado = mysqli_query($conexion, $consulta);

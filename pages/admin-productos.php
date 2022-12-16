@@ -15,10 +15,10 @@
     }
     else{
         foreach($tiendas as $tienda){
-            $primeraTienda = $tienda['tienda_id'];
+            $productoTienda = $tienda['tienda_id'];
             break;
         }
-        $productos = mostrarProductos($primeraTienda);
+        $productos = mostrarProductos($productoTienda);
     }
 
 ?>
@@ -69,12 +69,22 @@
                     <div class="row">
                         <form method="post">
                             <select name="productoTienda" class="form-select form-select-lg" aria-label=".form-select-lg example">
-                                <?php     
+                                <?php 
+                                    $nombreTienda;
                                     foreach($tiendas as $tienda){
+                                        if($tienda['tienda_id'] == $productoTienda){
+                                            $nombreTienda = $tienda['nombre'];
+
                                 ?>
 
-                                <option value="<?php echo $tienda['tienda_id'];?>"><?php echo $tienda['nombre']?></option>
+                                        <option value="<?php echo $tienda['tienda_id'];?>" selected><?php echo $tienda['nombre']?></option>
+
+                                        <?php } else{?>
+
+                                        <option value="<?php echo $tienda['tienda_id'];?>"><?php echo $tienda['nombre']?></option>
                                 
+                                        <?php } ?>
+
                                 <?php } ?>
 
                             </select>
@@ -84,8 +94,9 @@
                         </form>
                     </div>
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3" style="background-color: var(--color-main);">
-                            <h6 class="m-0 font-weight-bold text-white">Productos de: Nombre Tienda</h6>
+                        <div class="card-header py-3 d-flex align-items-center justify-content-between" style="background-color: var(--color-main);">
+                            <h6 class="m-0 font-weight-bold text-white d-inline">Productos de: <?php echo $nombreTienda?></h6>
+                            <button class="btn text-white" style="border: 2px solid white; background-color: var(--color-main);">Agregar</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -105,9 +116,9 @@
                                         ?>
                                         <tr>
                                             <td><?php echo $producto['nombre']?></td>
-                                            <td><?php echo $producto['codigo_producto']?></td>
+                                            <td><?php echo $producto['producto_id']?></td>
                                             <td>$ <?php echo $producto['precio']?></td>
-                                            <td><?php echo $producto['cantidad_en_tienda']?></td>
+                                            <td><?php echo $producto['cantidad']?></td>
                                             <td>
                                                 <button type="button" class="btn" style="background-color: var(--color-blue); color: white;">Editar</button>
                                                 <button type="button" class="btn" style="background-color: var(--color-main); color: white;">Eliminar</button>
