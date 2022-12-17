@@ -1,9 +1,51 @@
 <?php
 
+    include_once '../modelo/conexion.php';
+
     session_start();
     if(!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false){
         die("Te has intentado colar en la aplicacion principal");
     }
+
+    if(isset($_POST['mostrar'])){ /* Cambiar a la id de la tienda en la que esta el usuario */
+        $_SESSION['tiendaActual'] = $_POST['tiendaSeleccionada'];
+    }
+    else if(!$_SESSION['accesoTienda']){ /* Solo si esta accediendo por primera vez a la tienda */
+        /* Obtener el id de la primera tienda del usuario */
+        $sqlTienda = "
+        SELECT tienda_id from tiendas
+        WHERE administrador = '".$_SESSION['usuario_id']."'
+        ORDER BY tienda_id LIMIT 1
+        ";
+        $resultadoPrimeraTienda = mysqli_query($conexion, $sqlTienda);
+
+        foreach($resultadoPrimeraTienda as $valor){
+            $_SESSION['tiendaActual'] = $valor['tienda_id'];
+        }
+        $_SESSION['accesoTienda'] = true;
+    }
+
+
+    /* Obtener todas las tiendas del usuario */
+    $sqlTiendas = "
+    SELECT * from tiendas
+    WHERE administrador = '".$_SESSION['usuario_id']."'
+    ";
+    $resultadoAllTiendas = mysqli_query($conexion, $sqlTiendas);
+
+    /* Obtener todos los datos de los productos de la tienda actual (tiendaActual) en la que esta el usuario */
+    $sqlProductos = "
+    SELECT p.*, tp.cantidad from productos p
+    JOIN productos_tienda tp ON p.producto_id = tp.producto_id
+    WHERE tp.tienda_id = '".$_SESSION['tiendaActual']."'
+    ";
+    $resultadoAllProductos = mysqli_query($conexion, $sqlProductos);
+
+
+
+
+
+
 
 ?>
 
@@ -22,7 +64,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="../public\vendor\bootstrap\bootstrap-icons\bootstrap-icons.css" rel="stylesheet">
+    <link href="../public/vendor/bootstrap/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="../public/css/elementos.css" rel="stylesheet">
 
 </head>
@@ -48,6 +90,78 @@
                 include "componentes/encabezado.php";
 
                 ?>
+
+                <div class="container-fluid">
+                    <h3>Productos</h3>
+                    <div class="row">
+                        <form method="post">
+                            <select name="tiendaSeleccionada" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                                <?php
+                                    foreach($resultadoAllTiendas as $tienda){
+                                        if($tienda['tienda_id'] == $_SESSION['tiendaActual']){
+                                            $nombreTienda = $tienda['nombre'];
+
+                                ?>
+                                        <option value="<?php echo $tienda['tienda_id'];?>" selected><?php echo $tienda['nombre']?></option>
+
+                                        <?php } else{?>
+
+                                        <option value="<?php echo $tienda['tienda_id'];?>"><?php echo $tienda['nombre']?></option>
+                                
+                                        <?php } ?>
+                                <?php } ?>
+
+                            </select>
+                            <div class="col-2">
+                            <button name="mostrar" type="submit" class="btn" style="background-color: var(--color-main); color: white;">Mostrar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex align-items-center justify-content-between" style="background-color: var(--color-main);">
+                            <h6 class="m-0 font-weight-bold text-white d-inline">Productos de: <?php echo $nombreTienda?></h6>
+                            <a href="#" data-toggle="modal" data-target="#agregarProducto">
+                                <button name="agregarProducto" class="btn text-white" style="border: 2px solid white; background-color: var(--color-main);">Agregar</button>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Codigo</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                            <th>Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            foreach($resultadoAllProductos as $producto){
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $producto['nombre']?></td>
+                                            <td><?php echo $producto['producto_id']?></td>
+                                            <td>$ <?php echo $producto['precio']?></td>
+                                            <td><?php echo $producto['cantidad']?></td>
+                                            <td>
+                                                <a href="component/formulario-modificar-producto.php?id=<?php echo $producto['producto_id'];?>" class="btn" style="background-color: var(--color-blue); color: white;">Editar</a>
+                                                <a href="../modelo/eliminarProducto.php?id=<?php echo $producto['producto_id'];?>" class="btn" style="background-color: var(--color-main); color: white;">Eliminar</a>
+                                            </td>
+                                        </tr>
+                                        
+                                        <?php } ?>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+
             </div>    
         </div>
 
@@ -60,14 +174,46 @@
     
     ?>
 
+    <!-- Form de agregar producto -->
+    <div class="modal fade" id="agregarProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form class="modal-content" action="../modelo/agregarProducto.php" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Producto a <?php echo $nombreTienda ?></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                        <input type="text" name="nombreProducto" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Precio</label>
+                        <input type="text" name="precioProducto" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Cantidad</label>
+                        <input type="text" name="cantidadProducto" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" type="submit">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Bootstrap: JavaScript-->
-    <script src="../public/vendor/jquery/jquery.min.js"></script>
-    <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../public/vendor/chart.js/Chart.min.js"></script>
-    <script src="../public/js/sb-admin/demo/chart-area-demo.js"></script>
-    <script src="../public/js/sb-admin/demo/chart-pie-demo.js"></script>
-    <script src="../public/js/sb-admin/sb-admin-2.min.js"></script>
+    <script src="../sb-admin/vendor/jquery/jquery.min.js"></script>
+    <script src="../sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../sb-admin/vendor/chart.js/Chart.min.js"></script>
+    <script src="../sb-admin/js/demo/chart-area-demo.js"></script>
+    <script src="../sb-admin/js/demo/chart-pie-demo.js"></script>
+    <script src="../sb-admin/js/sb-admin-2.min.js"></script>
 
 </body>
 </html>
