@@ -14,6 +14,7 @@
     $resultado = mysqli_query($conexion, $consulta);
     
     $_SESSION['acceso'] = false;
+    $_SESSION['accesoTienda'] = false;
 
     if ($fila = $resultado->fetch_assoc()){
         $_SESSION['acceso'] = true;
