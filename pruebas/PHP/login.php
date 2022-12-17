@@ -22,13 +22,14 @@
         $_SESSION['nombre'] = $fila['nombre'];
         $_SESSION['apellido'] = $fila['apellido'];
         $_SESSION['tipo'] = $fila['tipo'];
-        if( $fila['tipo'] == 'Administrador'){
-        header("Location: ../pages/admin-inicio.php");
-        }
-    header("Location: http://localhost/proyectTW/pruebas/pages/empleado/empleado-inicio.php");
     }
     else{
         echo "Datos de usuario incorrecto";
     }
+if ($_SESSION['tipo'] == 'Administrador') {
+    header("Location: ../pages/admin-inicio.php");
+} else {
+    header("Location: http://localhost/proyectTW/pruebas/pages/empleado/empleado-inicio.php");
+}
 
 ?>
