@@ -31,7 +31,6 @@ if ($array2[2]->num_rows != 0) {
 } else {
     array_push($generales, 0);
 }
-print_r($generales);
 ?>
 
 <!DOCTYPE html>

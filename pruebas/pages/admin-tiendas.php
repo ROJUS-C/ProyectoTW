@@ -138,7 +138,14 @@ function get_empleado($id)
                             </div>
                         </div>
                     </div>
-                <?php } else { ?>
+                <?php } else if(isset($_GET['eliminar'])) { ?> 
+                    <?php require "./component/tienda.php";
+                    if($resultado->num_rows != 0){
+                        $tienda_id = $_GET['eliminar'];
+                        eliminarTienda($tienda_id);
+                    }
+                    ?>
+                <?php }else { ?>
                     <div class="row px-5">
                         <?php require './component/formulario-agregar-tienda.php' ?>
                     </div>
