@@ -50,7 +50,7 @@
     function modificarEmpleado($id, $nombre, $apellido, $correo)
     {
     ?>
-     <form action="../../pruebas/modelo/modificarEmpleado.php?tienda_id=<?php echo $id ?>" method="POST" class="row g-3 my-3">
+     <form action="../../pruebas/modelo/modificarEmpleado.php?usuario_id=<?php echo $id ?>" method="POST" class="row g-3 my-3">
          <div class="col-12 d-flex justify-content-center">
              <div class="col-md-4">
                  <label for="validationDefault01" class="form-label">Nombre</label>
@@ -75,7 +75,7 @@
          </div>
          <div class="col-12">
              <a href="http://localhost/proyectTW/pruebas/pages/admin-empleados.php" class="btn btn-primary mx-1">Volver</a>
-             <button class="btn btn-primary">Guardar Cambios</button>
+             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
          </div>
      </form>
  <?php } ?>
