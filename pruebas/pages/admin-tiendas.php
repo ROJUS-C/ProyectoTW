@@ -76,8 +76,8 @@ function get_empleado($id)
                 <?php if (isset($_GET['ver'])) { ?>
                     <div class="col">
                         <div class="card shadow ">
-                            <div class="card-header py-3 d-flex  align-items-center">
-                                <h6 class="m-0 font-weight-bold text-primary">Tienda</h6>
+                            <div class="card-header py-3 d-flex align-items-center" style="background-color: var(--color-main)">
+                                <h6 class="m-0 font-weight-bold text-white">Tienda</h6>
                             </div>
                             <!-- Tiendas -->
                             <div class="container text-center ">
@@ -141,16 +141,18 @@ function get_empleado($id)
                         </div>
                     </div>
                 <?php }else { ?>
-                    <div class="row px-5">
-                        <?php require './component/formulario-agregar-tienda.php' ?>
+                    <div class="row px-3">
+                        <div class="col">
+                            <?php require './component/formulario-agregar-tienda.php' ?>
+                        </div>
                     </div>
                     <!-- contenedor para mostrar las tiendas -->
                     <div class="row px-3">
                         <!-- Area Chart -->
                         <div class="col">
                             <div class="card shadow ">
-                                <div class="card-header py-3 d-flex  align-items-center">
-                                    <h6 class=" m-0 font-weight-bold text-primary ">Tiendas</h6>
+                                <div class="card-header py-3 d-flex  align-items-center" style="background-color: var(--color-main)">
+                                    <h6 class=" m-0 font-weight-bold text-white">Tiendas</h6>
                                 </div>
                                 <!-- Tiendas -->
                                 <div class="container text-center ">

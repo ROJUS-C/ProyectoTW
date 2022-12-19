@@ -14,7 +14,7 @@
             <input type="date" class="form-control" id="validationDefault02" name="fecha" required>
         </div>
     </div>
-    <div class="col-12">
+    <div class="col-12 mt-1">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
             <label class="form-check-label" for="invalidCheck2">
@@ -22,7 +22,7 @@
             </label>
         </div>
     </div>
-    <div class="col-12">
-        <button class="btn btn-primary">Crear tienda</button>
+    <div class="col-12 mt-3">
+        <button class="btn text-white" style="background-color: var(--color-main);">Crear tienda</button>
     </div>
 </form>
