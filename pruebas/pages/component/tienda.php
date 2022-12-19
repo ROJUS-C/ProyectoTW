@@ -12,7 +12,7 @@ function tiendas($id = '', $nombre = 'Nombre',  $descripcion = 'Descripcion', $f
             <div class="d-flex justify-content-center">
                 <a href="http://localhost/proyectTW/pruebas/pages/admin-tiendas.php?ver=<?php echo $id ?>" class="btn btn-primary mx-1">Ver</a>
                 <a href="http://localhost/proyectTW/pruebas/pages/admin-tiendas.php?modificar=<?php echo $id ?>" class="btn btn-primary  mx-1">Modificar</a>
-                <a href="http://localhost/proyectTW/pruebas/pages/admin-tiendas.php?eliminar=<?php echo $id ?>" class="btn btn-primary  mx-1">Eliminar</a>
+                <a href="http://localhost/proyectTW/pruebas/modelo/eliminarTienda.php?eliminar=<?php echo $id ?>" class="btn btn-primary  mx-1">Eliminar</a>
             </div>
         </div>
         <div class="card-footer text-muted">
@@ -22,7 +22,7 @@ function tiendas($id = '', $nombre = 'Nombre',  $descripcion = 'Descripcion', $f
 
 <?php }
 
-function verTienda($tienda_id, $nombre = 'Nombre', $encargado = 'Encargado', $descripcion = 'Descripcion', $fecha = 'Fecha')
+function verTienda($tienda_id, $nombre = 'Nombre', $encargado = 'Encargado', $correo = 'Vacio', $descripcion = 'Descripcion', $fecha = 'Fecha')
 {
 ?>
     <div class="card text-center col-12 m-2">
@@ -37,17 +37,16 @@ function verTienda($tienda_id, $nombre = 'Nombre', $encargado = 'Encargado', $de
                             <th>Encargado</th>
                             <th>Correo</th>
                             <th>Descripcion</th>
-                            <th>Opciones</th>
+                            <th>fecha de creacion</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><?php echo $encargado ?></td>
-                            <td>Vacio</td>
+                            <td><?php echo $correo ?></td>
                             <td><?php echo $descripcion ?></td>
                             <td>
-                                <button type="button" class="btn" style="background-color: var(--color-blue); color: white;">Editar</button>
-                                <button type="button" class="btn" style="background-color: var(--color-main); color: white;">Eliminar</button>
+                                <?php echo $fecha ?>
                             </td>
                         </tr>
                     </tbody>
@@ -107,16 +106,5 @@ function modificar($id = '', $nombre = '', $descripcion = ' ')
             <button class="btn btn-primary">Guardar Cambios</button>
         </div>
     </form>
-<?php } 
-function eliminarTienda($tienda_id){
-    require "../../pruebas/modelo/conexion.php";
-    $sql = "delete from tiendas where tienda_id = '".$tienda_id."'";
-    try {
-        $res = mysqli_query($conexion, $sql);
-    } catch (\Throwable $th) {
-        echo 'error';
-    }
-}
+<?php }
 ?>
-
-

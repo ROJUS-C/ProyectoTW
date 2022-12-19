@@ -88,13 +88,15 @@ function get_empleado($id)
                                     $empledo = get_empleado($id);
                                     if ($empledo->num_rows == 0) {
                                         $emps = 'Vacio';
+                                        $correo = 'Vacio';
                                     } else {
                                         foreach ($empledo as $key => $value) {
                                             $emps = $value['nombre'] . ' ' . $value['apellido'];
+                                            $correo = $value['correo'];
                                         }
                                     }
                                     foreach ($array as $key => $value) {
-                                        verTienda($value['tienda_id'], $value['nombre'], $emps, $value['descripcion'], $value['fecha']);
+                                        verTienda($value['tienda_id'], $value['nombre'], $emps,$correo, $value['descripcion'], $value['fecha']);
                                     }
                                     ?>
                                 </div>
@@ -138,13 +140,6 @@ function get_empleado($id)
                             </div>
                         </div>
                     </div>
-                <?php } else if(isset($_GET['eliminar'])) { ?> 
-                    <?php require "./component/tienda.php";
-                    if($resultado->num_rows != 0){
-                        $tienda_id = $_GET['eliminar'];
-                        eliminarTienda($tienda_id);
-                    }
-                    ?>
                 <?php }else { ?>
                     <div class="row px-5">
                         <?php require './component/formulario-agregar-tienda.php' ?>
