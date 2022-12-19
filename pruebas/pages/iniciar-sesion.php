@@ -50,7 +50,7 @@
                         <input class="iniciar-sesion__button iniciar-sesion__button--color-blue" type="submit" value="Iniciar Sesion">
                         <button class="iniciar-sesion__button">Registrarse</button>
                     </div>
-                    <a class="iniciar-sesion__empleado" href="">Iniciar sesion como empleado</a>
+                    <a class="iniciar-sesion__empleado" href="emp-iniciar-sesion.php">Iniciar sesion como empleado</a>
                 </form>
             </div>
         </section>

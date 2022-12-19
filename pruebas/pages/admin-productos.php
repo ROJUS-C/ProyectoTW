@@ -7,6 +7,7 @@
         die("Te has intentado colar en la aplicacion principal");
     }
 
+
     if(isset($_POST['mostrar'])){ /* Cambiar a la id de la tienda en la que esta el usuario */
         $_SESSION['tiendaActual'] = $_POST['tiendaSeleccionada'];
     }
@@ -19,10 +20,17 @@
         ";
         $resultadoPrimeraTienda = mysqli_query($conexion, $sqlTienda);
 
+        $contadorTienda = 0;
         foreach($resultadoPrimeraTienda as $valor){
             $_SESSION['tiendaActual'] = $valor['tienda_id'];
+            $contadorTienda += 1;
         }
-        $_SESSION['accesoTienda'] = true;
+        if ($contadorTienda != 0){ //Solo si tiene alguna tienda
+            $_SESSION['accesoTienda'] = true;
+        }
+        else{ //Si no tiene tienda, de esta manera ingresara de nuevo para verificar si creo una tienda
+            $_SESSION['tiendaActual'] = "";
+        }
     }
 
 
@@ -94,26 +102,47 @@
                 <div class="container-fluid">
                     <h3>Productos</h3>
                     <div class="row">
-                        <form method="post">
-                            <select name="tiendaSeleccionada" class="form-select form-select-lg" aria-label=".form-select-lg example">
-                                <?php
-                                    foreach($resultadoAllTiendas as $tienda){
-                                        if($tienda['tienda_id'] == $_SESSION['tiendaActual']){
-                                            $nombreTienda = $tienda['nombre'];?>
-                                        <option value="<?php echo $tienda['tienda_id'];?>" selected><?php echo $tienda['nombre']?></option>
-                                        <?php } else{?>
-                                        <option value="<?php echo $tienda['tienda_id'];?>"><?php echo $tienda['nombre']?></option>
+                        <div class="col-8">
+                            <form class="col-12" method="post">
+                                <div class="row flex-column flex-sm-row mb-4">
+                                    <select class="col-9 mb-2 mb-sm-4" name="tiendaSeleccionada" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                                        <?php
+                                            foreach($resultadoAllTiendas as $tienda){
+                                                if($tienda['tienda_id'] == $_SESSION['tiendaActual']){
+                                                    $nombreTienda = $tienda['nombre'];
+
+                                        ?>
+                                                <option value="<?php echo $tienda['tienda_id'];?>" selected><?php echo $tienda['nombre']?></option>
+
+                                                <?php } else{?>
+
+                                                <option value="<?php echo $tienda['tienda_id'];?>"><?php echo $tienda['nombre']?></option>
+                                        
+                                                <?php } ?>
                                         <?php } ?>
-                                <?php } ?>
-                            </select>
-                            <div class="col-2">
-                            <button name="mostrar" type="submit" class="btn" style="background-color: var(--color-main); color: white;">Mostrar</button>
-                            </div>
-                        </form>
+
+                                    </select>
+                                    <div class="col-3 px-0 px-sm-3">
+                                        <button name="mostrar" type="submit" class="btn" style="background-color: var(--color-main); color: white;">Mostrar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-4">
+
+                        </div>
+
                     </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex align-items-center justify-content-between" style="background-color: var(--color-main);">
-                            <h6 class="m-0 font-weight-bold text-white d-inline">Productos de: <?php echo $nombreTienda?></h6>
+                            <?php
+                            if($_SESSION['tiendaActual'] == ""){
+                                echo '<h6 class="m-0 font-weight-bold text-white d-inline">No hay Tienda</h6>';
+                            }
+                            else{
+                                echo '<h6 class="m-0 font-weight-bold text-white d-inline">Productos de: '.$nombreTienda.'</h6>';
+                            }
+                            ?>
                             <a href="#" data-toggle="modal" data-target="#agregarProducto">
                                 <button name="agregarProducto" class="btn text-white" style="border: 2px solid white; background-color: var(--color-main);">Agregar</button>
                             </a>
