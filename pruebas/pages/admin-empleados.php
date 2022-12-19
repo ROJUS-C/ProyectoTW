@@ -84,7 +84,7 @@ function verEmp($id){
                             <h6 class=" m-0 font-weight-bold " style="color: white;">EMPLEADOS</h6>
                         </div>
                         <div class="container text-center ">
-                            <div class="row d-flex justify-content-center my-5">
+                            <div class="row d-flex justify-content-center my-3">
                                 <?php
                                 require 'component/empleados.php';
                                 if(isset($_GET['editar'])){

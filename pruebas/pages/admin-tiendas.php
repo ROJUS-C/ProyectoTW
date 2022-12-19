@@ -131,7 +131,7 @@ function get_empleado($id)
                                 <h6 class=" m-0 font-weight-bold " style="color: white;">Agregar empleado</h6>
                             </div>
                             <!-- Tiendas -->
-                            <div class="container px-5">
+                            <div class="container px-2 px-sm-5">
                                 <?php
                                 $tienda_id = $_GET['agregarE'];
                                 include './component/agregarEmpleado.php';

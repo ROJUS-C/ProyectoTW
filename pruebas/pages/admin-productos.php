@@ -111,10 +111,10 @@
                 <div class="container-fluid">
                     <h3>Productos</h3>
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-12 col-sm-8">
                             <form class="col-12" method="post">
                                 <div class="row flex-column flex-sm-row mb-4">
-                                    <select class="col-9 mb-2 mb-sm-4" name="tiendaSeleccionada" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                                    <select class="col-12 col-sm-9 mb-2 mb-sm-4" name="tiendaSeleccionada" class="form-select form-select-lg" aria-label=".form-select-lg example">
                                         <?php
                                             foreach($resultadoAllTiendas as $tienda){
                                                 if($tienda['tienda_id'] == $_SESSION['tiendaActual']){
@@ -142,16 +142,16 @@
 
                     </div>
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex align-items-center justify-content-between" style="background-color: var(--color-main);">
+                        <div class="card-header py-3 d-flex flex-wrap align-items-center justify-content-between" style="background-color: var(--color-main);">
                             <?php
                             if($_SESSION['tiendaActual'] == ""){
-                                echo '<h6 class="m-0 font-weight-bold text-white d-inline">No hay Tiendas</h6>';
+                                echo '<h6 class="m-0 font-weight-bold text-white d-inline my-1 mr-2">No hay Tiendas</h6>';
                             }
                             else{
-                                echo '<h6 class="m-0 font-weight-bold text-white d-inline">Productos de: '.$nombreTienda.'</h6>';
+                                echo '<h6 class="m-0 font-weight-bold text-white d-inline my-1 mr-2">Productos de: '.$nombreTienda.'</h6>';
                             }
                             ?>
-                            <a href="#" data-toggle="modal" data-target="#agregarProducto">
+                            <a href="#" data-toggle="modal" data-target="#agregarProducto" class="my-2">
                                 <button name="agregarProducto" class="btn text-white" style="border: 2px solid white; background-color: var(--color-main);">Agregar</button>
                             </a>
                         </div>
@@ -176,9 +176,9 @@
                                             <td><?php echo $producto['producto_id']?></td>
                                             <td>$ <?php echo $producto['precio']?></td>
                                             <td><?php echo $producto['cantidad']?></td>
-                                            <td>
-                                                <a href="component/formulario-modificar-producto.php?id=<?php echo $producto['producto_id'];?>" class="btn" style="background-color: var(--color-blue); color: white;">Editar</a>
-                                                <a href="../modelo/eliminarProducto.php?id=<?php echo $producto['producto_id'];?>" class="btn" style="background-color: var(--color-main); color: white;">Eliminar</a>
+                                            <td class="center">
+                                                <a href="component/formulario-modificar-producto.php?id=<?php echo $producto['producto_id'];?>" class="btn mx-1 my-1" style="background-color: var(--color-blue); color: white;">Editar</a>
+                                                <a href="../modelo/eliminarProducto.php?id=<?php echo $producto['producto_id'];?>" class="btn mx-1 my-1" style="background-color: var(--color-main); color: white;">Eliminar</a>
                                             </td>
                                         </tr>
                                         
