@@ -110,7 +110,6 @@
                                             foreach($resultadoAllTiendas as $tienda){
                                                 if($tienda['tienda_id'] == $_SESSION['tiendaActual']){
                                                     $nombreTienda = $tienda['nombre'];
-
                                         ?>
                                                 <option value="<?php echo $tienda['tienda_id'];?>" selected><?php echo $tienda['nombre']?></option>
 

@@ -83,7 +83,6 @@ function verTienda($tienda_id, $nombre = 'Nombre', $encargado = 'Encargado', $de
 function modificar($id = '', $nombre = '', $descripcion = ' ')
 {
 ?>
-
     <form action="../../pruebas/modelo/modificarTienda.php?tienda_id=<?php echo $id ?>" method="POST" class="row g-3 my-3">
         <div class="col-12 d-flex justify-content-center">
             <div class="col-md-4">
@@ -112,7 +111,11 @@ function modificar($id = '', $nombre = '', $descripcion = ' ')
 function eliminarTienda($tienda_id){
     require "../../pruebas/modelo/conexion.php";
     $sql = "delete from tiendas where tienda_id = '".$tienda_id."'";
-    $res = mysqli_query($conexion, $sql);
+    try {
+        $res = mysqli_query($conexion, $sql);
+    } catch (\Throwable $th) {
+        echo 'error';
+    }
 }
 ?>
 
