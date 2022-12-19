@@ -108,4 +108,12 @@ function modificar($id = '', $nombre = '', $descripcion = ' ')
             <button class="btn btn-primary">Guardar Cambios</button>
         </div>
     </form>
-<?php } ?>
+<?php } 
+function eliminarTienda($tienda_id){
+    require "../../pruebas/modelo/conexion.php";
+    $sql = "delete from tiendas where tienda_id = '".$tienda_id."'";
+    $res = mysqli_query($conexion, $sql);
+}
+?>
+
+

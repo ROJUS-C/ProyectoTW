@@ -99,18 +99,12 @@
                                 <?php
                                     foreach($resultadoAllTiendas as $tienda){
                                         if($tienda['tienda_id'] == $_SESSION['tiendaActual']){
-                                            $nombreTienda = $tienda['nombre'];
-
-                                ?>
+                                            $nombreTienda = $tienda['nombre'];?>
                                         <option value="<?php echo $tienda['tienda_id'];?>" selected><?php echo $tienda['nombre']?></option>
-
                                         <?php } else{?>
-
                                         <option value="<?php echo $tienda['tienda_id'];?>"><?php echo $tienda['nombre']?></option>
-                                
                                         <?php } ?>
                                 <?php } ?>
-
                             </select>
                             <div class="col-2">
                             <button name="mostrar" type="submit" class="btn" style="background-color: var(--color-main); color: white;">Mostrar</button>
