@@ -11,7 +11,8 @@
         '".$_POST['apellido']."',
         '".$_POST['correo']."',
         '".$_POST['password']."',
-        'Administrador'
+        'Administrador',
+        NULL
     )
     ");
 

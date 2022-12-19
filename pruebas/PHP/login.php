@@ -29,7 +29,7 @@
 if ($_SESSION['tipo'] == 'Administrador') {
     header("Location: ../pages/admin-inicio.php");
 } else {
-    header("Location: http://localhost/proyectTW/pruebas/pages/empleado/empleado-inicio.php");
+    header("Location: ../pages/empleado/empleado-inicio.php");
 }
 
 ?>

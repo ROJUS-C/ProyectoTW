@@ -8,7 +8,7 @@
 <div class="modal fade" id="updateUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form class="modal-content" action="../controlador/update.php" method="POST">
+        <form class="modal-content" action="../PHP/update.php" method="POST">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modificar cuenta</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -55,7 +55,7 @@
             <div class="modal-body">Selecciona "Salir" para cerrar la sesion de tu cuenta.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href="../controlador/logout.php">Salir</a>
+                <a class="btn btn-primary" href="../PHP/logout.php">Salir</a>
             </div>
         </div>
     </div>
