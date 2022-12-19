@@ -35,7 +35,7 @@
                                      <td><?php echo $value['tienda'] ?></td>
                                      <td>
                                         <a href="http://localhost/proyectTW/pruebas/pages/admin-empleados.php?editar=<?php echo $value['usuario_id'] ?> " class="btn" style="background-color: var(--color-blue); color: white;">Editar</button>
-                                        <a href="http://localhost/proyectTW/pruebas/modelo/eliminarEmpleado.php?eliminar=<?php echo $value['usuario_id'] ?>" class="btn" style="background-color: var(--color-main); color: white;">Eliminar</button>
+                                        <a href="http://localhost/proyectTW/pruebas/modelo/eliminarEmpleado.php?eliminar=<?php echo $value['usuario_id'] ?>" class="btn mx-2" style="background-color: var(--color-main); color: white;">Eliminar</button>
                                      </td>
                                  </tr>
                          <?php }
@@ -73,9 +73,9 @@
                  </label>
              </div>
          </div>
-         <div class="col-12">
+         <div class="col-12" >
              <a href="http://localhost/proyectTW/pruebas/pages/admin-empleados.php" class="btn btn-primary mx-1">Volver</a>
-             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+             <button type="submit" class="btn btn-primary my-2">Guardar Cambios</button>
          </div>
      </form>
  <?php } ?>
