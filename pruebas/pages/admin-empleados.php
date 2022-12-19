@@ -9,7 +9,7 @@ if (!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false) {
 $id = $_SESSION['usuario_id'];
 
 $sql = "
-select u.nombre nombre,u.apellido apellido, u.correo correo, t1.nombre tienda  
+select u.usuario_id usuario_id, u.nombre nombre,u.apellido apellido, u.correo correo, t1.nombre tienda  
 from usuarios u1 join tiendas t1 on(u1.usuario_id = t1.administrador and u1.usuario_id = ".$id.") 
 join usuarios u on(t1.tienda_id = u.tienda ); 
 ";
@@ -25,7 +25,18 @@ foreach ($res_2 as $key => $value) {
 
 $res = mysqli_query($conexion, $sql);
 
-
+function verEmp($id){
+    require '../modelo/conexion.php';
+    $sql = "
+    select * from usuarios where usuario_id = " . $id . "   
+    ";
+    try {
+        $res = mysqli_query($conexion, $sql);
+         return $res;
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+}
 ?>
 
 
@@ -76,11 +87,18 @@ $res = mysqli_query($conexion, $sql);
                             <div class="row d-flex justify-content-center my-5">
                                 <?php
                                 require 'component/empleados.php';
+                                if(isset($_GET['editar'])){
+                                    $id = $_GET['editar'];
+                                    $res = verEmp($id);
+                                    foreach ($res as $key => $value) {
+                                        modificarEmpleado($value['usuario_id'], $value['nombre'], $value['apellido'], $value['correo']);
+                                    }
+                                }else{
                                 if($res->num_rows == 0){
                                     $res = [];
                                 }
                                 empleados($nombre, $res);
-                                ?>
+                                }?>
                             </div>
                         </div>
                     </div>
