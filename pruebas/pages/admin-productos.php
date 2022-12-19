@@ -7,29 +7,38 @@
         die("Te has intentado colar en la aplicacion principal");
     }
 
+    $sqlNumTiendas = "
+    SELECT count(*) numTiendas from tiendas
+    WHERE administrador = '".$_SESSION['usuario_id']."'
+    ";
+    $resultadoNumTiendas = mysqli_query($conexion, $sqlNumTiendas);
+
+    foreach($resultadoNumTiendas as $valor){
+        $contadorTienda = $valor['numTiendas'];
+    }
 
     if(isset($_POST['mostrar'])){ /* Cambiar a la id de la tienda en la que esta el usuario */
         $_SESSION['tiendaActual'] = $_POST['tiendaSeleccionada'];
     }
-    else if(!$_SESSION['accesoTienda']){ /* Solo si esta accediendo por primera vez a la tienda */
-        /* Obtener el id de la primera tienda del usuario */
-        $sqlTienda = "
-        SELECT tienda_id from tiendas
-        WHERE administrador = '".$_SESSION['usuario_id']."'
-        ORDER BY tienda_id LIMIT 1
-        ";
-        $resultadoPrimeraTienda = mysqli_query($conexion, $sqlTienda);
 
-        $contadorTienda = 0;
-        foreach($resultadoPrimeraTienda as $valor){
-            $_SESSION['tiendaActual'] = $valor['tienda_id'];
-            $contadorTienda += 1;
-        }
+    else if(!$_SESSION['accesoTienda'] || $contadorTienda == 0){ /* Solo si esta accediendo por primera vez a la tienda */
         if ($contadorTienda != 0){ //Solo si tiene alguna tienda
+            /* Obtener el id de la primera tienda del usuario */
+            $sqlTienda = "
+            SELECT tienda_id from tiendas
+            WHERE administrador = '".$_SESSION['usuario_id']."'
+            ORDER BY tienda_id LIMIT 1
+            ";
+            $resultadoPrimeraTienda = mysqli_query($conexion, $sqlTienda);
+
+            foreach($resultadoPrimeraTienda as $valor){
+                $_SESSION['tiendaActual'] = $valor['tienda_id'];
+            }
             $_SESSION['accesoTienda'] = true;
         }
-        else{ //Si no tiene tienda, de esta manera ingresara de nuevo para verificar si creo una tienda
+        else{ //Si no tiene tiendas
             $_SESSION['tiendaActual'] = "";
+            $_SESSION['accesoTienda'] = false;
         }
     }
 
@@ -137,7 +146,7 @@
                         <div class="card-header py-3 d-flex align-items-center justify-content-between" style="background-color: var(--color-main);">
                             <?php
                             if($_SESSION['tiendaActual'] == ""){
-                                echo '<h6 class="m-0 font-weight-bold text-white d-inline">No hay Tienda</h6>';
+                                echo '<h6 class="m-0 font-weight-bold text-white d-inline">No hay Tiendas</h6>';
                             }
                             else{
                                 echo '<h6 class="m-0 font-weight-bold text-white d-inline">Productos de: '.$nombreTienda.'</h6>';
