@@ -165,7 +165,22 @@ function empleadosMasVentas()
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Ganancias</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$0</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> 
+                                                <?php 
+                                                require "../modelo/conexion.php";
+                                                $sql = "select sum(precio) total from venta";
+                                                $res = mysqli_query($conexion, $sql);
+                                                if($res->num_rows ==0){
+                                                    echo '$O';
+                                                }else{
+                                                    $total = 0;
+                                                    foreach ($res as $key => $value) {
+                                                        $total = $value['total'];
+                                                    } 
+                                                    echo $total;
+                                                }
+                                                ?>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
