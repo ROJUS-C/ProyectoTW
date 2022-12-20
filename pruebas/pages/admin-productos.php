@@ -109,6 +109,69 @@
                 ?>
 
                 <div class="container-fluid">
+                    <?php
+                    
+                    if(isset($_GET['editar_id'])){
+                        $producto_id = $_GET['editar_id'];
+
+                        $sqlProducto = "
+                        SELECT p.*, tp.cantidad from productos p
+                        JOIN productos_tienda tp ON p.producto_id = tp.producto_id
+                        WHERE tp.tienda_id = '".$_SESSION['tiendaActual']."'
+                        AND p.producto_id = '".$producto_id."'
+                        ";
+
+                        $resultadoProducto = mysqli_query($conexion, $sqlProducto);
+
+                        foreach($resultadoProducto as $valor){
+                            $nombreProducto = $valor['nombre'];
+                            $precioProducto = $valor['precio'];
+                            $cantidadProducto = $valor['cantidad'];
+                        }
+
+                    ?>
+                    <div class="col">
+                        <div class="card shadow ">
+                            <div class="card-header py-3 d-flex  align-items-center " style="background-color: #5800FF;">
+                                <h6 class=" m-0 font-weight-bold " style="color: white;">Modificar</h6>
+                            </div>
+                            <!-- Modificar -->
+                            <div class="container text-center ">
+                                <div class="row d-flex justify-content-center">
+                                    <form action="http://localhost/proyectTW/pruebas/modelo/modificarProducto.php?id=<?php echo $producto_id ?>" method="POST" class="row g-3 my-3">
+                                        <div class="col-12 d-flex flex-wrap justify-content-center">
+                                            <div class="col-sm-5 col-md-4 col-12">
+                                                <label for="validationDefault01" class="form-label">Nombre</label>
+                                                <input name="nombreProducto" type="text" class="form-control" placeholder="<?php echo $nombreProducto ?>" name="nombre">
+                                            </div>
+                                            <div class="col-sm-5 col-md-4 col-12 mt-4 mt-sm-0">
+                                                <label for="validationDefault02" class="form-label">Precio</label>
+                                                <input name="precioProducto" type="text" class="form-control"  placeholder="<?php echo $precioProducto ?>" name="descripcion">
+                                            </div>
+                                            <div class="col-sm-5 col-md-4 col-12 mt-4 mt-sm-0">
+                                                <label for="validationDefault02" class="form-label">Cantidad</label>
+                                                <input name="cantidadProducto" type="text" class="form-control" placeholder="<?php echo $cantidadProducto ?>" name="descripcion">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                                                <label class="form-check-label" for="invalidCheck2">
+                                                    Aceptar terminos
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <a href="http://localhost/proyectTW/pruebas/pages/admin-productos.php" class="btn text-white mx-1 mt-2" style="background-color: var(--color-main);">Volver</a>
+                                            <button class="btn text-white mx-1 mt-2" style="background-color: var(--color-blue);">Guardar Cambios</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php } else{ ?>
+
                     <h3>Productos</h3>
                     <div class="row">
                         <div class="col-12 col-sm-8">
@@ -177,7 +240,7 @@
                                             <td>$ <?php echo $producto['precio']?></td>
                                             <td><?php echo $producto['cantidad']?></td>
                                             <td class="center">
-                                                <a href="component/formulario-modificar-producto.php?id=<?php echo $producto['producto_id'];?>" class="btn mx-1 my-1" style="background-color: var(--color-blue); color: white;">Editar</a>
+                                                <a href="http://localhost/proyectTW/pruebas/pages/admin-productos.php?editar_id=<?php echo $producto['producto_id'];?>" class="btn mx-1 my-1" style="background-color: var(--color-blue); color: white;">Editar</a>
                                                 <a href="../modelo/eliminarProducto.php?id=<?php echo $producto['producto_id'];?>" class="btn mx-1 my-1" style="background-color: var(--color-main); color: white;">Eliminar</a>
                                             </td>
                                         </tr>
@@ -191,6 +254,7 @@
                     </div>
                     </div>
                 </div>
+                <?php } ?>
 
 
             </div>    

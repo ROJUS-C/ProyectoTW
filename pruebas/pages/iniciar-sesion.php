@@ -48,9 +48,8 @@
                     <a class="iniciar-sesion__recuperar-contraseña" href="">¿Olvidaste tu contraseña?</a>
                     <div class="iniciar-sesion__btns">
                         <input class="iniciar-sesion__button iniciar-sesion__button--color-blue" type="submit" value="Iniciar Sesion">
-                        <button class="iniciar-sesion__button">Registrarse</button>
+                        <a href="registrarse.php" class="iniciar-sesion__button iniciar-sesion__button--link">Registrarse</a>
                     </div>
-                    <a class="iniciar-sesion__empleado" href="emp-iniciar-sesion.php">Iniciar sesion como empleado</a>
                 </form>
             </div>
         </section>
