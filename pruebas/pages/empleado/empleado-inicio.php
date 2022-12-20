@@ -147,6 +147,7 @@ function buscarProducto($producto_id, $tienda_id)
                                     <?php
                                     }
                                     ?>
+                                    
                                 </div>
                             </div>
                         </div>
