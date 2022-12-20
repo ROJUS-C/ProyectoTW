@@ -32,7 +32,7 @@ if ($array2[2]->num_rows != 0) {
     array_push($generales, 0);
 }
 
-function estadisticas()
+function productosMasVendidos()
 {
     require "../modelo/conexion.php";
     $sql = "
@@ -44,7 +44,31 @@ function estadisticas()
     $res = mysqli_query($conexion, $sql);
     return $res;
 }
+function productosMenosVendidos()
+{
+    require "../modelo/conexion.php";
+    $sql = "
+    select t.nombre nombre_tienda, p.nombre nombre_producto, e.cantidad cantidad from tiendas t join (select tienda_id, producto_id, SUM(cantidad) cantidad  from venta_producto GROUP BY tienda_id, producto_id) e 
+    on(t.tienda_id = e.tienda_id) join productos p on(p.producto_id = e.producto_id)
+    ORDER BY e.cantidad ASC LIMIT 5; 
+    ";
 
+    $res = mysqli_query($conexion, $sql);
+    return $res;
+}
+
+function empleadosMasVentas()
+{
+    require "../modelo/conexion.php";
+    $sql = "
+     select u1.nombre nombre , u1.apellido apellido, t.nombre tienda, u.cantidad cantidad  from usuarios u1 join 
+ (SELECT v.usuario_id usuario_id, sum(vp.cantidad) cantidad from venta_producto vp join venta v ON(vp.venta_id = v.venta_id) GROUP BY v.usuario_id) u 
+ on(u1.usuario_id = u.usuario_id) join tiendas t on(u1.tienda = t.tienda_id) GROUP by u.cantidad DESC LIMIT 5
+    ";
+
+    $res = mysqli_query($conexion, $sql);
+    return $res;
+}
 
 ?>
 
@@ -206,33 +230,92 @@ function estadisticas()
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Nombre producto</th>
+                                            <th>Productos mas vendidos</th>
                                             <th>Nombre tienda</th>
                                             <th>Cantidad</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><?php ?></td>
-                                            <td>$ <?php  ?></td>
-                                            <td><?php  ?></td>
-                                        </tr>
+
+                                        <?php
+                                        $res = productosMasVendidos();
+                                        if ($res->num_rows == 0) {
+                                        ?><tr>
+                                                <td>Vacio</td>
+                                                <td>Vacio</td>
+                                                <td>0</td>
+                                            </tr>
+                                            <?php
+                                        } else {
+                                            foreach ($res as $key => $value) {
+
+                                            ?><tr>
+                                                    <td><?php echo $value['nombre_producto'] ?></td>
+                                                    <td><?php echo $value['nombre_tienda'] ?></td>
+                                                    <td><?php echo $value['cantidad'] ?></td>
+                                                <tr>
+                                            <?php }
+                                        } ?>
                                     </tbody>
                                 </table>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Nombre producto</th>
+                                            <th>Productos menos vendido</th>
                                             <th>Nombre tienda</th>
                                             <th>Cantidad</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                        $res = productosMenosVendidos();
+                                        if ($res->num_rows == 0) {
+                                        ?><tr>
+                                                <td>Vacio</td>
+                                                <td>Vacio</td>
+                                                <td>0</td>
+                                            </tr>
+                                            <?php
+                                        } else {
+                                            foreach ($res as $key => $value) {
+
+                                            ?><tr>
+                                                    <td><?php echo $value['nombre_producto'] ?></td>
+                                                    <td><?php echo $value['nombre_tienda'] ?></td>
+                                                    <td><?php echo $value['cantidad'] ?></td>
+                                                <tr>
+                                            <?php }
+                                        } ?>
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                         <tr>
-                                            <td><?php ?></td>
-                                            <td>$ <?php  ?></td>
-                                            <td><?php  ?></td>
+                                            <th>Empleados con mas ventas</th>
+                                            <th>Nombre tienda</th>
+                                            <th>Cantidad</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $res = empleadosMasVentas();
+                                        if ($res->num_rows == 0) {
+                                        ?><tr>
+                                                <td>Vacio</td>
+                                                <td>Vacio</td>
+                                                <td>0</td>
+                                            </tr>
+                                            <?php
+                                        } else {
+                                            foreach ($res as $key => $value) {
+
+                                            ?><tr>
+                                                    <td><?php echo $value['nombre'].' '.$value['apellido'] ?></td>
+                                                    <td><?php echo $value['tienda'] ?></td>
+                                                    <td><?php echo $value['cantidad'] ?></td>
+                                                <tr>
+                                            <?php }
+                                        } ?>
                                     </tbody>
                                 </table>
                             </div>
