@@ -31,7 +31,7 @@
 
     <!-- Item Ventas -->
     <li class="nav-item">
-        <a class="nav-link" href="empleados-ventas.php">
+        <a class="nav-link" href="empleado-ventas.php">
             <i class="fas fa-fw bi-cart-fill"></i>
             <span>Ventas</span></a>
     </li>
