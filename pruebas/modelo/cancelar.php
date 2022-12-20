@@ -8,7 +8,7 @@ if (file_exists("venta.txt")) {
         $valor = fgets($archivo);
     } while (!feof($archivo));
 
-    if (!empty($valor)) {        
+    if (!empty($valor)) {
         $sql = "
         delete from venta 
         where venta_id = '".$valor."'

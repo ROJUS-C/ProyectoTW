@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require "../../modelo/conexion.php";
 if (!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false) {

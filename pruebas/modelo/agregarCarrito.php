@@ -1,7 +1,6 @@
 <?php
 
-use function PHPSTORM_META\map;
-
+use function PHPSTORM_META\map; 
 session_start();
 $fileName = "venta.txt";
 $usuario_id = $_SESSION['usuario_id'];
@@ -20,15 +19,18 @@ if(file_exists("venta.txt")){
         $sql = "
         insert into venta_producto values('" . $valor . "', '" . $producto_id . "', '" . $cantidad . "', '" . $precio . "' ,'" . $tienda_id . "')
         ";
-        mysqli_query($conexion, $sql);
-        
-        $sql = "
+        try {
+            mysqli_query($conexion, $sql);
+            $sql = "
         update productos_tienda
-        SET cantidad = (select cantidad from productos_tienda where tienda_id = '".$tienda_id."' and producto_id = '".$producto_id."') - ".$cantidad. "
+        SET cantidad = (select cantidad from productos_tienda where tienda_id = '" . $tienda_id . "' and producto_id = '" . $producto_id . "') - " . $cantidad . "
         where tienda_id = '" . $tienda_id . "' and producto_id = '" . $producto_id . "';
         ";
-        mysqli_query($conexion, $sql);
-        header("Location: http://localhost/proyectTW/pruebas/pages/empleado/empleado-inicio.php");        
+            mysqli_query($conexion, $sql);
+            header("Location: http://localhost/proyectTW/pruebas/pages/empleado/empleado-inicio.php"); 
+        } catch (\Throwable $th) {
+            header("Location: http://localhost/proyectTW/pruebas/pages/empleado/empleado-inicio.php?error=producto-repetido");                    
+        }       
     }else{
         $producto_id = $_GET['producto_id'];
         $tienda_id = $_GET['tienda_id'];
