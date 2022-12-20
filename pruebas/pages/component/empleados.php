@@ -34,8 +34,8 @@
                                      <td><?php echo $value['correo'] ?></td>
                                      <td><?php echo $value['tienda'] ?></td>
                                      <td>
-                                        <a href="http://localhost/proyectTW/pruebas/pages/admin-empleados.php?editar=<?php echo $value['usuario_id'] ?> " class="btn mx-1 my-1" style="background-color: var(--color-blue); color: white;">Editar</button>
-                                        <a href="http://localhost/proyectTW/pruebas/modelo/eliminarEmpleado.php?eliminar=<?php echo $value['usuario_id'] ?>" class="btn mx-1 my-1" style="background-color: var(--color-main); color: white;">Eliminar</button>
+                                        <a href="http://localhost/proyectTW/pruebas/pages/admin-empleados.php?editar=<?php echo $value['usuario_id'] ?> " class="btn" style="background-color: var(--color-blue); color: white;">Editar</button>
+                                        <a href="http://localhost/proyectTW/pruebas/modelo/eliminarEmpleado.php?eliminar=<?php echo $value['usuario_id'] ?>" class="btn" style="background-color: var(--color-main); color: white;">Eliminar</button>
                                      </td>
                                  </tr>
                          <?php }
@@ -74,8 +74,8 @@
              </div>
          </div>
          <div class="col-12">
-             <a href="http://localhost/proyectTW/pruebas/pages/admin-empleados.php" class="btn mx-1 mt-2" style="background-color: var(--color-main); color: white;">Volver</a>
-             <button type="submit" class="btn mx-1 mt-2" style="background-color: var(--color-blue); color: white;">Guardar Cambios</button>
+             <a href="http://localhost/proyectTW/pruebas/pages/admin-empleados.php" class="btn btn-primary mx-1">Volver</a>
+             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
          </div>
      </form>
  <?php } ?>

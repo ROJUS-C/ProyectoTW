@@ -1,10 +1,54 @@
 <?php
 
 session_start();
+require "../../modelo/conexion.php";
 if (!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false) {
     die("Te has intentado colar en la aplicacion principal");
 }
+$usuario_id = $_SESSION['usuario_id'];
+$sql = "
+select * from usuarios where usuario_id = '" . $usuario_id . "'
+";
+$res = mysqli_query($conexion, $sql);
 
+foreach ($res as $key => $value) {
+    $tienda_id = $value['tienda'];
+}
+
+function existe_venta()
+{
+    require "../../modelo/conexion.php";
+    $nameF = "../../modelo/venta.txt";
+    if (file_exists($nameF)) {
+        $archivo = fopen($nameF, "r");
+        do {
+            $valor = fgets($archivo);
+        } while (!feof($archivo));
+
+        if (!empty($valor)) {
+            $sql = "
+            select p.nombre nombre, p.producto_id codigo, vp.cantidad cantidad , vp.precio precio, 
+            vp.venta_id venta_id, vp.producto_id producto_id, vp.tienda_id tienda_id
+            from venta_producto vp join productos p on(vp.producto_id = p.producto_id) where vp.venta_id = '" . $valor . "';
+            ";
+            $res = mysqli_query($conexion, $sql);
+            return $res;
+        }
+        return [];
+    }
+    return [];
+}
+
+function buscarProducto($producto_id, $tienda_id)
+{
+    require "../../modelo/conexion.php";
+    $sql = "
+    select DISTINCT pt.cantidad cantidad, pt.producto_id producto_id, p.nombre nombre, p.precio precio from productos_tienda pt join productos p on(pt.producto_id = p.producto_id) 
+    join tiendas t on(pt.tienda_id = '" . $tienda_id . "') where p.producto_id = '" . $producto_id . "';
+    ";
+    $res = mysqli_query($conexion, $sql);
+    return $res;
+}
 
 ?>
 
@@ -44,19 +88,70 @@ if (!isset($_SESSION['acceso']) || $_SESSION['acceso'] == false) {
                 include "../componentes/encabezado.php";
 
                 ?>
-
-                <div class="container-fluid">
-                    <nav class="navbar bg-light">
-                        <div class="container-fluid">
-                            <a class="navbar-brand">Buscador de productos</a>
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Buscar</button>
-                            </form>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container-fluid d-flex flex-column">
+                            <nav class="navbar bg-light mb-5">
+                                <div class="container-fluid d-flex justify-content-center align-items-center">
+                                    <form class="d-flex" action="http://localhost/proyectTW/pruebas/pages/empleado/components/buscarProducto.php" method="POST" role="search">
+                                        <input class="form-control me-2" type="search" placeholder="Search" name="buscar" aria-label="Search">
+                                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                    </form>
+                                </div>
+                            </nav>
+                            <div class="card">
+                                <div class="card-header">
+                                    Resultado
+                                </div>
+                                <div class="card-body">
+                                </div>
+                                <?php
+                                require "./components/carrito.php";
+                                if (isset($_GET['id'])) {
+                                    $producto_id =  $_GET['id'];
+                                    $res = buscarProducto($producto_id, $tienda_id);
+                                    foreach ($res as $key => $value) {
+                                        agregarProducto($value['producto_id'], $value['nombre'], $value['cantidad'], $tienda_id);
+                                    }
+                                }
+                                ?>
+                            </div>
                         </div>
-                    </nav>
+                    </div>
                 </div>
-
+                <div class="row px-3 my-5 ">
+                    <!-- Area Chart -->
+                    <div class="col">
+                        <div class="card shadow ">
+                            <div class="card-header py-3 d-flex  align-items-center">
+                                <h6 class=" m-0 font-weight-bold text-primary ">CARRITO</h6>
+                            </div>
+                            <!-- Tiendas -->
+                            <div class="container text-center ">
+                                <div class="card-body">
+                                    <?php
+                                    $res = existe_venta();
+                                    if ($res == []) {
+                                        echo 'CARRITO VACIO';
+                                    } else {
+                                        $array = [];
+                                        foreach ($res as $key => $value) {
+                                            array_push($array, $value);
+                                        }
+                                        mostrarCarrito($array);
+                                    ?>
+                                        <div>
+                                            <a href="http://localhost/proyectTW/pruebas/modelo/cancelar.php" class="btn mx-2" style="background-color: var(--color-main); color: white;">Cancelar</a>
+                                            <a href="http://localhost/proyectTW/pruebas/modelo/vender.php" class="btn mx-2" style="background-color: var(--color-main); color: white;">Finalizar</a>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Acciones de opciones del menu del perfil y button para trasladarse a la parte superior de la pagina-->
                 <?php
 
