@@ -51,25 +51,6 @@ function verTienda($tienda_id, $nombre = 'Nombre', $encargado = 'Encargado', $co
                         </tr>
                     </tbody>
                 </table>
-
-                <table class="table table-bordered mt-5" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Ventas</th>
-                            <th>Producto mas vendido</th>
-                            <th>Producto menos vendido</th>
-                            <th>Total cantidad</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Vacio</td>
-                            <td>Vacio</td>
-                            <td>Vacio</td>
-                            <td>Vacio</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
             <div class="d-flex justify-content-center flex-wrap">
                 <a href="http://localhost/proyectTW/pruebas/pages/admin-tiendas.php" class="btn text-white mx-1 mt-2" style="background-color: var(--color-main);">Volver</a>
