@@ -168,7 +168,10 @@ function empleadosMasVentas()
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"> 
                                                 <?php 
                                                 require "../modelo/conexion.php";
-                                                $sql = "select sum(precio) total from venta";
+                                                $id = $_SESSION['usuario_id'];
+                                                $sql = "select sum(precio) total from venta v join tiendas t 
+                                                on(v.tienda_id = t.tienda_id and t.administrador = '".$id."')
+                                                ";
                                                 $res = mysqli_query($conexion, $sql);
                                                 if($res->num_rows ==0){
                                                     echo '$O';
