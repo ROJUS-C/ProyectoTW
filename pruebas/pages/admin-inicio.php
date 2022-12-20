@@ -176,51 +176,6 @@ function empleadosMasVentas()
                         </div>
                     </div>
                     <!-- Contenedor de Tiendas -->
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="card shadow mb-4">
-                                <!-- Encabezado -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: var(--color-main);">
-                                    <h6 class="m-0 font-weight-bold text-white">Tiendas</h6>
-                                </div>
-                                <div class="container text-center ">
-                                    <div class="row d-flex justify-content-center">
-                                        <?php
-                                        if ($tiendas->num_rows == 0) { ?>
-                                            <div class="card-body row">
-                                                <button class="tarjeta">
-                                                    <div class="tarjeta__container">
-                                                        <div class="tarjeta__icon">
-                                                            <i class="fas fa-2x bi-shop"></i>
-                                                        </div>
-                                                        <div class="tarjeta__texto">
-                                                            <p class="tarjeta__nombre">Vacio</p>
-                                                        </div>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                            <?php } else {
-                                            foreach ($tiendas as $key => $value) {
-                                            ?>
-                                                <div class="card-body col-6">
-                                                    <button class="tarjeta">
-                                                        <div class="tarjeta__container">
-                                                            <div class="tarjeta__icon">
-                                                                <i class="fas fa-2x bi-shop"></i>
-                                                            </div>
-                                                            <div class="tarjeta__texto">
-                                                                <p class="tarjeta__nombre"> <?php echo $value['nombre'] ?></p>
-                                                            </div>
-                                                        </div>
-                                                    </button>
-                                                </div>
-                                        <?php }
-                                        } ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="card shadow col-12">
                         <div class="card-header py-3 d-flex align-items-center justify-content-between" style="background-color: var(--color-main);">
                             <h6 class="m-0 font-weight-bold text-white d-inline">Estadisticas</h6>
