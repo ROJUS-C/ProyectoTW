@@ -31,6 +31,21 @@ if ($array2[2]->num_rows != 0) {
 } else {
     array_push($generales, 0);
 }
+
+function estadisticas()
+{
+    require "../modelo/conexion.php";
+    $sql = "
+    select t.nombre nombre_tienda, p.nombre nombre_producto, e.cantidad cantidad from tiendas t join (select tienda_id, producto_id, SUM(cantidad) cantidad  from venta_producto GROUP BY tienda_id, producto_id) e 
+    on(t.tienda_id = e.tienda_id) join productos p on(p.producto_id = e.producto_id)
+    ORDER BY e.cantidad DESC LIMIT 5; 
+    ";
+
+    $res = mysqli_query($conexion, $sql);
+    return $res;
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -170,7 +185,7 @@ if ($array2[2]->num_rows != 0) {
                                                                 <i class="fas fa-2x bi-shop"></i>
                                                             </div>
                                                             <div class="tarjeta__texto">
-                                                                <p class="tarjeta__nombre"> <?php  echo $value['nombre'] ?></p>
+                                                                <p class="tarjeta__nombre"> <?php echo $value['nombre'] ?></p>
                                                             </div>
                                                         </div>
                                                     </button>
@@ -179,6 +194,47 @@ if ($array2[2]->num_rows != 0) {
                                         } ?>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow col-12">
+                        <div class="card-header py-3 d-flex align-items-center justify-content-between" style="background-color: var(--color-main);">
+                            <h6 class="m-0 font-weight-bold text-white d-inline">Estadisticas</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre producto</th>
+                                            <th>Nombre tienda</th>
+                                            <th>Cantidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><?php ?></td>
+                                            <td>$ <?php  ?></td>
+                                            <td><?php  ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre producto</th>
+                                            <th>Nombre tienda</th>
+                                            <th>Cantidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><?php ?></td>
+                                            <td>$ <?php  ?></td>
+                                            <td><?php  ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -191,14 +247,14 @@ if ($array2[2]->num_rows != 0) {
 
                 ?>
 
-    <!-- Bootstrap: JavaScript-->
-    <script src="../sb-admin/vendor/jquery/jquery.min.js"></script>
-    <script src="../sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../sb-admin/vendor/chart.js/Chart.min.js"></script>
-    <script src="../sb-admin/js/demo/chart-area-demo.js"></script>
-    <script src="../sb-admin/js/demo/chart-pie-demo.js"></script>
-    <script src="../sb-admin/js/sb-admin-2.min.js"></script>
+                <!-- Bootstrap: JavaScript-->
+                <script src="../sb-admin/vendor/jquery/jquery.min.js"></script>
+                <script src="../sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <script src="../sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+                <script src="../sb-admin/vendor/chart.js/Chart.min.js"></script>
+                <script src="../sb-admin/js/demo/chart-area-demo.js"></script>
+                <script src="../sb-admin/js/demo/chart-pie-demo.js"></script>
+                <script src="../sb-admin/js/sb-admin-2.min.js"></script>
 
 </body>
 
